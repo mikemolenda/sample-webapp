@@ -1,0 +1,106 @@
+<!--HEADER-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TITLE</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Mike Molenda">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<!--END HEADER-->
+<!--NAV-TOP-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="Home">Widecast Cable</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="TVPlans">TV</a></li>
+        <li><a href="InternetPlans">Internet</a></li>
+        <li><a href="PPVEvents">PPV Events</a></li>
+        <li><a href="PPVMovies">PPV Movies</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="Account"><span class="glyphicon glyphicon-user"></span> username's Account</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--END NAV-TOP-->
+
+<!--MAIN-CONTENT-->
+<div class="container-fluid">    
+  <div class="col-sm-12 text-center"> 
+    <h1>TV Plans</h1>
+    <img class="img-responsive img-center" src="img/splash/tv-plan.jpg" alt="TV Plans">
+
+    <hr>
+
+    <div class="row" id="row1">
+
+    <table class="table table-hover text-left">
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Price</th>
+          <th>&nbsp;</th><!-- Space for button -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Basic - 50 channels</td>
+          <td>$49.99</td>
+          <td>
+            <form action="ViewItem">
+              <input type="hidden" name="itemId" value="1">
+              <input type="submit" class="btn btn-success btn-sm" value="View">
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>BasicPlus - 100 channels</td>
+          <td>$99.99</td>
+          <td>
+            <form action="ViewItem">
+              <input type="hidden" name="itemId" value="2">
+              <input type="submit" class="btn btn-success btn-sm" value="View">
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>Ultimate - 200 channels</td>
+          <td>$149.99</td>
+          <td>
+            <form action="ViewItem">
+              <input type="hidden" name="itemId" value="3">
+              <input type="submit" class="btn btn-success btn-sm" value="View">
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+ 
+    </div><!-- end row 1 -->
+
+  </div>
+</div><!-- end container -->
+<!--END MAIN-CONTENT-->
+
+<!--FOOTER-->
+<footer class="container-fluid text-center">
+  <p>WideCast Cable. A CIS419 project by Mike Molenda.</p>
+</footer>
+</body>
+</html>
+<!--END FOOTER-->

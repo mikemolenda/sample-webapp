@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+  <!-- 
+    Tells JSP translator not to generate whitespace in HTML in place of scriptlets.
+    Source: http://stackoverflow.com/a/20100278
+  -->
+  <jsp-config>
+    <jsp-property-group>
+        <url-pattern>*.jsp</url-pattern>
+        <trim-directive-whitespaces>true</trim-directive-whitespaces>
+     </jsp-property-group>
+  </jsp-config>
+
+  <!-- Home -->
+  <servlet>
+      <servlet-name>Home</servlet-name>
+      <servlet-class>controllers.Home</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>Home</servlet-name>
+      <url-pattern>/Home</url-pattern>
+  </servlet-mapping> 
+
+  <servlet-mapping>
+      <servlet-name>Home</servlet-name>
+      <url-pattern></url-pattern><!-- maps Home to context root-->
+  </servlet-mapping> 
+
+  <!-- CustomerUIPanels -->
+  <servlet>
+      <servlet-name>CustomerUIPanels</servlet-name>
+      <servlet-class>controllers.includes.CustomerUIPanels</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>CustomerUIPanels</servlet-name>
+      <url-pattern>/CustomerUIPanels</url-pattern>
+  </servlet-mapping>  
+
+  <!-- ItemList -->
+  <servlet>
+      <servlet-name>ItemList</servlet-name>
+      <servlet-class>controllers.ItemList</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ItemList</servlet-name>
+      <url-pattern>/ItemList</url-pattern>
+  </servlet-mapping>  
+
+  <!-- ItemOrderTable -->
+  <servlet>
+      <servlet-name>ItemOrderTable</servlet-name>
+      <servlet-class>controllers.includes.ItemOrderTable</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ItemOrderTable</servlet-name>
+      <url-pattern>/ItemOrderTable</url-pattern>
+  </servlet-mapping> 
+
+  <!-- Login -->
+  <servlet>
+      <servlet-name>Login</servlet-name>
+      <servlet-class>controllers.Login</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>Login</servlet-name>
+      <url-pattern>/Login</url-pattern>
+  </servlet-mapping>  
+
+  <!-- Logout -->
+  <servlet>
+      <servlet-name>Logout</servlet-name>
+      <servlet-class>controllers.Logout</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>Logout</servlet-name>
+      <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>  
+
+  <!-- NavBar -->
+  <servlet>
+      <servlet-name>NavBar</servlet-name>
+      <servlet-class>controllers.includes.NavBar</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>NavBar</servlet-name>
+      <url-pattern>/NavBar</url-pattern>
+  </servlet-mapping>  
+
+  <!-- ViewInvoice -->
+  <servlet>
+      <servlet-name>ViewInvoice</servlet-name>
+      <servlet-class>controllers.ViewInvoice</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ViewInvoice</servlet-name>
+      <url-pattern>/ViewInvoice</url-pattern>
+  </servlet-mapping>  
+
+</web-app>
