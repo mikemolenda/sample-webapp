@@ -32,31 +32,17 @@ public class CustomerUIPanels extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        makePanel(request, response, 
+            "TV Plan", "TV Plans, from 50 to 200 channels");
 
-        out.println(makePanel(
-            "TV Plan", 
-            "tv-plan.jpg", 
-            "TV Plans, from 50 to 200 channels"));
+        makePanel(request, response, 
+            "Internet Plan", "High speed Internet access up to 50 Mbps");
 
-        out.println(makePanel(
-            "Internet Plan", 
-            "internet-plan.jpg", 
-            "High speed Internet access up to 50 Mbps"));
+        makePanel(request, response, 
+            "PPV Live Event", "Live sporting events available for order");
 
-        out.println(makePanel(
-            "PPV Live Event", 
-            "ppv-live-event.jpg", 
-            "Exclusive live sporting events available for order"));
-
-        out.println(makePanel(
-            "PPV Movie", 
-            "ppv-movie.jpg", 
-            "Dozens of movies available on demand"));
-
-        // Don't close output stream - control gets transferred back to the JSP
-
+        makePanel(request, response, 
+            "PPV Movie", "Dozens of movies available on demand");
     }
 
     /**
@@ -67,25 +53,23 @@ public class CustomerUIPanels extends HttpServlet {
         doGet(request, response);
     }
 
-    public String makePanel(String title, String imgSrc, String body) {
-        return (
-              "<div class=\"col-sm-3\">\n"
-            + "<div class=\"panel panel-primary\">\n"
-            + "<div class=\"panel-heading\">"+ title +"s</div>\n"
-            + "<div class=\"panel-body\">\n"
-            + "<img src=\"img/" + imgSrc + "\" class=\"img-responsive\" " 
-                + "style=\"width:100%\" alt=\"" + title + "\">\n"
-            + "</div>\n"
-            + "<div class=\"panel-footer\">\n"
-            + "<p>" + body + "</p>\n"
-            + "<form action=\"ItemList\">\n"
-            + "<input type=\"hidden\" name=\"category\" value=\"" 
-                + title + "\">\n"
-            + "<input type=\"submit\" class=\"btn btn-success btn-block\" " 
-                + "value=\"View Items\">\n"
-            + "</form>\n"
-            + "</div>\n"
-            + "</div>\n"
-            + "</div>");
+    public void makePanel(
+            HttpServletRequest request, HttpServletResponse response, 
+            String title, String body) throws ServletException, IOException {
+
+        String url = "includes/ui-panel.jsp";
+        String heading = title + "s";
+        String imgSrc =
+            "img/" + title.toLowerCase().replace(' ', '-') + ".jpg";
+
+        request.setAttribute("size", "col-sm-3");
+        request.setAttribute("heading", heading);
+        request.setAttribute("imgSrc", imgSrc);
+        request.setAttribute("bodytext", body);
+        request.setAttribute("action", "ItemList");
+        request.setAttribute("param", title);
+        request.setAttribute("btntext", "View Items");
+
+        request.getRequestDispatcher(url).include(request, response);
     }
 }

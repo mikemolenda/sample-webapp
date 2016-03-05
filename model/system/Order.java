@@ -16,6 +16,7 @@
 
 package model.system;
 
+import java.text.*;
 import java.util.*;
 
 import model.*;
@@ -80,5 +81,13 @@ public class Order implements java.io.Serializable {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    /**
+     * Returns orderDate as a formatted String.
+     */
+    public String dateString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        return sdf.format(getOrderDate()); 
     }
 }

@@ -1,7 +1,5 @@
 <%@ include file="includes/header.jsp" %>
 
-<%@ include file="includes/nav-login.jsp" %>
-
 <div class="container-fluid">    
   <div class="col-sm-12 text-center"> 
     <h1>Welcome to WideCast!</h1>

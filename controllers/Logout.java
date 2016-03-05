@@ -29,7 +29,6 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        RequestDispatcher rd = request.getRequestDispatcher("/Home");
 
         synchronized(session) {
 
@@ -39,7 +38,7 @@ public class Logout extends HttpServlet {
         } // end synchronized 
 
         // Redirect Home        
-        rd.forward(request, response);
+        request.getRequestDispatcher("/Home").forward(request, response);
 
     }
 

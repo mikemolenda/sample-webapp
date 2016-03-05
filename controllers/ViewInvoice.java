@@ -39,6 +39,7 @@ public class ViewInvoice extends HttpServlet {
         HttpSession session = request.getSession();
         String customerId = request.getParameter("customerId");
         String itemId = request.getParameter("itemId");
+        String removeOrder = request.getParameter("removeOrder");
 
         String url;
         Customer customer = null;
@@ -86,13 +87,22 @@ public class ViewInvoice extends HttpServlet {
                 Item item = EntityData.getItems().get(itemId);
                 if (item != null) {
                     // Add order and get status message
-                    String addOrder = 
+                    String invoiceMessage = 
                         EntityData.addOrder(new Order(item, customer));
-                    request.setAttribute("addOrder", addOrder);
+                    request.setAttribute("invoiceMessage", invoiceMessage);
                 }
             }
 
             // If orderId passed, remove order
+            //TODO
+
+            // Set attributes for view
+            String customerName = 
+                customer.getFName() + " " + customer.getLName();
+            
+            request.setAttribute("customer", customer);
+            request.setAttribute("customerName", customerName);
+
 
         } else {
             // If user is not customer or customer agent, redirect home

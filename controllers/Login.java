@@ -30,7 +30,6 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        RequestDispatcher rd = request.getRequestDispatcher("/Home");
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -61,6 +60,6 @@ public class Login extends HttpServlet {
         }
 
         // Redirect Home        
-        rd.forward(request, response);
+        request.getRequestDispatcher("/Home").forward(request, response);
     }
 }

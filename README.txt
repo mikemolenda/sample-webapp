@@ -43,7 +43,7 @@ All users are assigned a role type. Logging in automatically takes the user to t
 
 #  Statistics
 
-## Lines of Code (excluding whitespace)
+## Total Lines of Code (incl. whitespace & comments)
 
 index.jsp:  
 

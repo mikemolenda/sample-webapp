@@ -1,7 +1,5 @@
 <%@ include file="includes/header.jsp" %>
 
-<%@ include file="includes/nav-customer.jsp" %>
-
 <div class="container-fluid">    
   <div class="col-sm-12 text-center"> 
     <h1>Welcome to WideCast!</h1>
@@ -23,8 +21,12 @@
 
     <hr>
 
-    <jsp:include page="/CustomerUIPanels" flush="true" />
+    <div class="row" id="row2">
 
+      <%-- Generate UI panels used for app navigation --%>
+      <jsp:include page="/CustomerUIPanels" flush="true" />
+
+    </div><!--end row 2 -->
   </div>
 </div><!-- end container -->    
 

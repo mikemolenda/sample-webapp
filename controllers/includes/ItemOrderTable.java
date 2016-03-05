@@ -32,53 +32,43 @@ public class ItemOrderTable extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-        Item item;
         Map<String, Item> items = EntityData.getItems();
+        String url;
+
         String category = request.getParameter("category");     
         boolean dateFlag = (category.equals("PPV Live Event"));
 
-        response.setContentType("text/html"); // neccessary?
-        PrintWriter out = response.getWriter();
+        // Set table column header text
+        request.setAttribute("th1", "Item");
+        request.setAttribute("th2", (dateFlag ? "Event Date" : "&nbsp;"));        
+        request.setAttribute("th3", "Price");
+        request.setAttribute("th4", "&nbsp;");        
 
-        out.println(
-              "<table class=\"table table-hover text-left\">"
-            + "<thead>\n" 
-            + "<th>Item</th>\n"
-            + "<th>" + (dateFlag ? "Event Date" : "&nbsp;") + "</th>\n"
-            + "<th>Price</th>\n" 
-            + "<th>&nbsp;</th>\n" 
-            + "</thead>\n" 
-            + "<tbody>");
-        
+        url = "/includes/table-head-4.jsp";
+        request.getRequestDispatcher(url).include(request, response);
+
+        // Generate new tr for every item that matches category
         for (Entry<String, Item> entry : items.entrySet()) {
-            item = entry.getValue();
+            
+            Item item = entry.getValue();
+
             if (item.getCategory().equals(category)) {
-                String name = item.getName();
                 String date = 
                     (dateFlag ? ((PPVLiveEvent)item).dateString() : "&nbsp;");
-                String price = item.getPrice().toString();
-                String id = item.getItemId();
 
-                out.println(
-                      "<tr>\n" 
-                    + "<td>" + name + "</td>\n"
-                    + "<td>" + date + "</td>\n"
-                    + "<td>$" + price + "</td>\n"
-                    + "<td>\n" 
-                    + "<form action=\"ViewInvoice\">\n"
-                    + "<input type=\"hidden\" name=\"itemId\" value=\"" + id
-                        + "\">\n"
-                    + "<input type=\"submit\" class="
-                        + "\"btn btn-success btn-sm\" value=\"Order\">\n"
-                    + "</form>\n" 
-                    + "</td>\n" 
-                    + "</tr>");
+                // Set table column parameters
+                request.setAttribute("td1", item.getName());
+                request.setAttribute("td2", date);
+                request.setAttribute("td3", item.getPrice().toString());
+                request.setAttribute("action", "ViewInvoice");
+                request.setAttribute("paramType", "itemId");
+                request.setAttribute("param", item.getItemId());
+                request.setAttribute("btntext", "Order");
+
+                url = "/includes/table-tr-form-4.jsp";
+                request.getRequestDispatcher(url).include(request, response);
             }
         }
-
-        out.println("</tbody>\n</table>");
-        
-        // Don't close output stream - control gets transferred back to the JSP
     }
 
     /**

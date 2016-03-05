@@ -32,7 +32,6 @@ public class NavBar extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        ServletContext sc = this.getServletContext();
 
         String role = null;
         String navbar;
@@ -56,7 +55,7 @@ public class NavBar extends HttpServlet {
             navbar = "/includes/nav-login.jsp";
         }
 
-        sc.getRequestDispatcher(navbar).include(request, response);
+        request.getRequestDispatcher(navbar).include(request, response);
     }
 
     /**
