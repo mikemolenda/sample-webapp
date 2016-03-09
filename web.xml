@@ -49,6 +49,39 @@
       <url-pattern></url-pattern><!-- maps Home to context root-->
   </servlet-mapping> 
 
+  <!-- AlertMessage -->
+  <servlet>
+      <servlet-name>AlertMessage</servlet-name>
+      <servlet-class>controllers.includes.AlertMessage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>AlertMessage</servlet-name>
+      <url-pattern>/AlertMessage</url-pattern>
+  </servlet-mapping>  
+
+  <!-- Account -->
+  <servlet>
+      <servlet-name>Account</servlet-name>
+      <servlet-class>controllers.Account</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>Account</servlet-name>
+      <url-pattern>/Account</url-pattern>
+  </servlet-mapping>  
+
+<!-- AutoComplete -->
+  <servlet>
+      <servlet-name>AutoComplete</servlet-name>
+      <servlet-class>controllers.AutoComplete</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>AutoComplete</servlet-name>
+      <url-pattern>/AutoComplete</url-pattern>
+  </servlet-mapping>  
+
   <!-- CustomerUIPanels -->
   <servlet>
       <servlet-name>CustomerUIPanels</servlet-name>
@@ -69,17 +102,6 @@
   <servlet-mapping>
       <servlet-name>InvoiceAction</servlet-name>
       <url-pattern>/InvoiceAction</url-pattern>
-  </servlet-mapping>  
-
-  <!-- InvoiceMessage -->
-  <servlet>
-      <servlet-name>InvoiceMessage</servlet-name>
-      <servlet-class>controllers.includes.InvoiceMessage</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-      <servlet-name>InvoiceMessage</servlet-name>
-      <url-pattern>/InvoiceMessage</url-pattern>
   </servlet-mapping>  
 
   <!-- InvoiceTable -->
@@ -146,6 +168,28 @@
   <servlet-mapping>
       <servlet-name>NavBar</servlet-name>
       <url-pattern>/NavBar</url-pattern>
+  </servlet-mapping>  
+
+  <!-- PayBill -->
+  <servlet>
+      <servlet-name>PayBill</servlet-name>
+      <servlet-class>controllers.PayBill</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>PayBill</servlet-name>
+      <url-pattern>/PayBill</url-pattern>
+  </servlet-mapping>  
+
+  <!-- Search -->
+  <servlet>
+      <servlet-name>Search</servlet-name>
+      <servlet-class>controllers.Search</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>Search</servlet-name>
+      <url-pattern>/Search</url-pattern>
   </servlet-mapping>  
 
   <!-- ViewInvoice -->

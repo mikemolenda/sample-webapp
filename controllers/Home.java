@@ -49,7 +49,7 @@ public class Home extends HttpServlet {
         synchronized(session) {
 
             if (session.getAttribute("user") == null) {
-                // If session user null, set role to None
+                // If session user null, set login and role to none
                 role = "None";
                 if (session.getAttribute("login") == null) {
                     // If login null, set to none
@@ -57,13 +57,12 @@ public class Home extends HttpServlet {
                 }
             } else {
                 // Otherwise set role to session user role
-                user = (User) session.getAttribute("user");
-                role = user.getRole();
+                role = (String) session.getAttribute("role");
             }
 
         } // end synchronized
 
-        // Set page title and url based on mapping
+        // Set url based on mapping
         if (urlMap.get(role) == null) {
             url = "/login.jsp";
         } else {
@@ -71,8 +70,7 @@ public class Home extends HttpServlet {
         }
 
         // Forward to appropriate home page for user
-        rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     /**

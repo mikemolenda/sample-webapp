@@ -35,29 +35,22 @@ public class ItemList extends HttpServlet {
         HttpSession session = request.getSession();
         String category = request.getParameter("category");
 
+        String role;
         String url;
         String imgSplash;
 
         synchronized(session) {
-
             // Get user role
-            if (session.getAttribute("user") != null) {
-
-                User user = (User) session.getAttribute("user");
-                String role = user.getRole();
-
-                // If user is not a customer, get out of here
-                if (role.equals("Customer")) {
-                    url = "/item-list.jsp";
-                } else {
-                    url = "/Home";
-                }
-            } else {
-                url = "/Home";
-            }
-
+            role = (String) session.getAttribute("role");
         } // end synchronized
 
+        // If user is not a customer, get out of here
+        if (role.equals("Customer")) {
+            url = "/item-list.jsp";
+        } else {
+            url = "/Home";
+        }
+    
         // Set request parameters based on category
         if (category != null) {
             imgSplash = category.toLowerCase().replace(' ', '-');
@@ -68,7 +61,6 @@ public class ItemList extends HttpServlet {
         // Forward to appropriate page for request
         request.setAttribute("imgSplash", imgSplash);
         request.getRequestDispatcher(url).forward(request, response);
-
     }
 
     /**

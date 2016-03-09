@@ -42,44 +42,43 @@ public class ViewInvoice extends HttpServlet {
         String removeOrder = request.getParameter("removeOrder");
 
         String url;
+        User user = null;
+        String role = "";
         Customer customer = null;
+        String message = null;
 
         synchronized(session) {
 
-            // Get customer
+            // Get user and role
             if (session.getAttribute("user") != null) {
-
-                // Get user role
-                User user = (User) session.getAttribute("user");
-                String role = user.getRole();
-
-                // If active user is a customer, operate on active account
-                if (role.equals("Customer")) {
-                    customer = (Customer) user;
-                }
-
-                // If manager or account admin, get customer from reqest ID
-                if (role.equals("Manager") || 
-                    role.equals("Account Specialist")) {
-
-                    // If customerId specified, get customer from Hashmap
-                    if (customerId != null) {
-
-                        User targetUser = EntityData.getUsers().get(customerId);
-                        
-                        // Ensure customer is actually a customer
-                        if (targetUser != null 
-                            && targetUser.getRole().equals("Customer")) {
-                            customer = (Customer) targetUser; 
-                        }
-                    }
-                }
+                user = (User) session.getAttribute("user");
+                role = user.getRole();
             }
 
         } // end synchronized
 
-        if (customer != null) {
+        // If active user is a customer, operate on active account
+        if (role.equals("Customer")) {
+            customer = (Customer) user;
+        }
 
+        // If user is manager or account admin, get customer based on reqest ID
+        if (role.equals("Manager") || role.equals("Account Specialist")) {
+            // If customerId specified, get customer from Hashmap
+            if (customerId != null) {
+                User targetUser = EntityData.getUsers().get(customerId);            
+                
+                // Ensure customer is actually a customer
+                if (targetUser != null 
+                        && targetUser.getRole().equals("Customer")) {
+                    customer = (Customer) targetUser; 
+                }
+            }
+        }
+
+        // Set URL and actions based on customer status
+        if (customer != null) {
+            // If user is customer or agent show invoice
             url = "/invoice.jsp";
 
             // If itemId passed, add order
@@ -87,22 +86,21 @@ public class ViewInvoice extends HttpServlet {
                 Item item = EntityData.getItems().get(itemId);
                 if (item != null) {
                     // Add order and get status message
-                    String invoiceMessage = 
-                        EntityData.addOrder(new Order(item, customer));
-                    request.setAttribute("invoiceMessage", invoiceMessage);
+                    message = EntityData.addOrder(new Order(item, customer));
                 }
             }
 
-            // If orderId passed, remove order
-            //TODO
+            // If removeOrder passed, remove order
+            if (removeOrder != null) {
+                message = EntityData.removeOrder(removeOrder);
+            }
 
             // Set attributes for view
             String customerName = 
                 customer.getFName() + " " + customer.getLName();
-            
-            request.setAttribute("customer", customer);
-            request.setAttribute("customerName", customerName);
-
+                request.setAttribute("message", message);
+                request.setAttribute("customer", customer);
+                request.setAttribute("customerName", customerName);
 
         } else {
             // If user is not customer or customer agent, redirect home

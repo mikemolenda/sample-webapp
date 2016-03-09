@@ -31,10 +31,8 @@ public class Logout extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-
             // Clear all session attributes
             session.invalidate();
-
         } // end synchronized 
 
         // Redirect Home        

@@ -48,6 +48,8 @@ public class Login extends HttpServlet {
                         // Set session user
                         session.setAttribute("user", user);
                         session.setAttribute("username", user.getUsername());
+                        session.setAttribute("fullname", 
+                            (user.getFName() + " " + user.getLName()));
                         session.setAttribute("role", user.getRole());
                         session.setAttribute("login", "valid");
                     }
@@ -58,7 +60,6 @@ public class Login extends HttpServlet {
 
             } // end synchronized
         }
-
         // Redirect Home        
         request.getRequestDispatcher("/Home").forward(request, response);
     }

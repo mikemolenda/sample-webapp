@@ -10,17 +10,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="ItemList?category=TV+Plan">TV</a></li>
-        <li><a href="ItemList?category=Internet+Plan">Internet</a></li>
-        <li><a href="ItemList?category=PPV+Live+Event">Events</a></li>
-        <li><a href="ItemList?category=PPV+Movie">Movies</a></li>
-        <li><a href="ViewInvoice">Billing</a></li>
-        <li><a href="Search">Search</a></li>
+        <li><a href="ViewTickets">View Tickets</a></li>
+        <li><a href="AddTicket">Add Ticket</a></li>
+        <li><a href="ViewCompletedTickets">Completed Tickets</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Account">
+        <li><a href="Logout">
           <span class="glyphicon glyphicon-user"></span> 
-          <%= session.getAttribute("username") %>'s Account
+          Logout <%= session.getAttribute("username") %>
         </a></li>
       </ul>
     </div>

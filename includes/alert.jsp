@@ -1,3 +1,3 @@
 <div class="<%= request.getAttribute("alertStyle") %>">
-    <%= request.getAttribute("invoiceMessage") %> 
+    <%= request.getAttribute("message") %> 
 </div>

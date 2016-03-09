@@ -39,4 +39,8 @@ public class Customer extends User implements java.io.Serializable {
         this.creditCardNo = creditCardNo;
     }
 
+    public String getCCLast4() {
+        return creditCardNo.substring(creditCardNo.length() - 4); 
+    }
+
 }

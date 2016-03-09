@@ -37,16 +37,11 @@ public class NavBar extends HttpServlet {
         String navbar;
 
         synchronized(session) {
-
             // Get user role
-            if (session.getAttribute("user") != null) {
-                // Get user role
-                User user = (User) session.getAttribute("user");
-                role = user.getRole();
-            } 
-
+            role = (String) session.getAttribute("role");
         } // end synchronized
 
+        // Set navbar based on role 
         if (role != null) {
             navbar = "/includes/nav-" 
                     + role.toLowerCase().replace(' ', '-') 

@@ -134,6 +134,74 @@ public class EntityData {
 
     private static Map<String, Ticket> tickets = new HashMap<String, Ticket>();
 
+// Users actions
+
+    public static Map<String, User> getUsers() {
+        return users;
+    }   
+
+    /**
+     * Adds a new customer account
+     */
+    public static synchronized String addCustomer(String username, String email, 
+        String password, String fName, String lName, String ccNo) {
+
+        String condition;   // Error/success condition of add
+
+        if (users.get(username) == null) {
+            users.put(username, 
+                new Customer(username, email, password, fName, lName, ccNo));
+            condition = "Success!";
+        } else {
+            condition = "A user with that username already exists!";
+        }
+
+        return condition;
+    } 
+
+    /**
+     * Permanently deletes customer account
+     */
+    public static synchronized String removeCustomer(String username) {
+
+        String condition;   // Error/success condition of remove
+
+        if (users.get(username) != null) {
+            users.remove(username);
+            condition = "Success!";
+        } else {
+            condition = "There is no user with that username!";
+        }
+
+        return condition;
+    }
+
+    /**
+     * Modifies an existing customer's data
+     */
+    public static synchronized String modifyCustomer(String username, 
+        String email, String password, String fName, String lName, String ccNo) {
+
+        String condition;   // Error/success condition of modify
+
+        if (users.get(username) != null) {
+            users.put(username,
+                new Customer(username, email, password, fName, lName, ccNo));
+            condition = "Success!";
+        } else {
+            condition = "There is no user with that username!";
+        }
+
+        return condition;
+
+    }
+
+// Items actions
+
+    public static Map<String, Item> getItems() {
+        return items;
+    }
+
     private static int dayCounter = 1;  // Counter for use with getDate()
 
     /**
@@ -157,13 +225,7 @@ public class EntityData {
         return broadcastDate; 
     }
 
-    public static Map<String, User> getUsers() {
-        return users;
-    }
-
-    public static Map<String, Item> getItems() {
-        return items;
-    }
+// Orders actions
 
     public static Map<String, Order> getOrders() {
         return orders;
@@ -213,7 +275,7 @@ public class EntityData {
                     Calendar todayCal = Calendar.getInstance();
                     eventCal.setTime(event.getEventDate());
 
-                    if (eventCal.after(todayCal)) {
+                    if (eventCal.before(todayCal)) {
                         condition = "That event has already occurred!";
                         return condition;    
                     }
@@ -230,25 +292,114 @@ public class EntityData {
     /**
      * Removes a single order, based on orderId
      */
-    public static void removeOrder(String orderId) {
+    public static synchronized String removeOrder(String orderId) {
+
+        String condition;   // Error/success condition of remove
+
+        // Do not allow removal of PPV Event within 24 hours of the event
+        if (orders.get(orderId).getItem().getCategory().equals("PPV Live Event")) {
+            Calendar eventCal = Calendar.getInstance();
+            Calendar tomorrowCal = Calendar.getInstance();
+            eventCal.setTime(
+                ((PPVLiveEvent) orders.get(orderId).getItem()).getEventDate());
+            tomorrowCal.add(Calendar.DATE, 1);
+            if (eventCal.before(tomorrowCal)) {
+                condition = "You cannot cancel an event within 24 hours of event date.";
+                return condition;
+            }
+        }
+
         orders.remove(orderId);
+
+        if (orders.containsKey(orderId)) {
+            condition = "Order was not removed";
+        } else {
+            condition = "Success!";
+        }
+
+        return condition;
+    }
+
+    /**
+     * Administrative order removal, can remove orders even on event date
+     */
+    public static synchronized String removeOrder(String orderId, String role) {
+
+        String condition;   // Error/success condition of remove
+
+        if (role.equals("Account Specialist") || role.equals("Manager")) {
+            
+            orders.remove(orderId);
+
+            if (orders.containsKey(orderId)) {
+                condition = "Order was not removed";
+            } else {
+                condition = "Success!";
+            }
+        } else {
+            condition = "Not authorized to remove this order";
+        }
+
+        return condition;
+
     }
 
     /**
      * Removes all of a specified user's orders
      */
-    public static void clearOrders(Customer customer) {
+    public static synchronized void clearOrders(Customer customer) {
         
+        ArrayList<String> keys = new ArrayList<String>();
+
+        // Get keys to remove
         for (Entry<String, Order> entry : orders.entrySet()) {
 
             String key = entry.getKey();
             Order order = entry.getValue();
             
             if (order.getCustomer().equals(customer)) {
-                orders.remove(key);
+                keys.add(key);
             }
         }
+
+        // Remove keys
+        for (String removeKey : keys) {
+            orders.remove(removeKey);
+        }
     }
+
+    /**
+     * Checks whether a customer has any orders
+     */
+    public static synchronized boolean hasOrders(Customer customer) {
+        for (Entry<String, Order> entry : orders.entrySet()) {
+            Order order = entry.getValue();
+            if (order.getCustomer().equals(customer)) {
+                return true;
+            }
+        }
+        return false;
+    } 
+
+    /**
+     * Calculates the total price for all of a user's orders
+     */
+    public static BigDecimal calculateOrderTotal(Customer customer) {
+        BigDecimal total = new BigDecimal("0.00");
+
+        for (Entry<String, Order> entry : orders.entrySet()) {
+            Order order = entry.getValue();
+            Item item = order.getItem();
+
+            if (order.getCustomer().equals(customer)) {
+                total = total.add(item.getPrice());
+            }
+        }
+
+        return total;
+    }
+
+// Tickets actions
 
     public static Map<String, Ticket> getTickets() {
         return tickets;

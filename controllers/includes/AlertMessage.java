@@ -1,5 +1,5 @@
 /* 
- * InvoiceMessage
+ * AlertMessage
  * 
  * Displays the status message returned by add/remove order actions.
  * 
@@ -20,7 +20,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-public class InvoiceMessage extends HttpServlet {
+public class AlertMessage extends HttpServlet {
 
     /**
      * Handle GET requests
@@ -28,10 +28,10 @@ public class InvoiceMessage extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
-        String message = (String) request.getAttribute("invoiceMessage");
+        String message = (String) request.getAttribute("message");
 
         if (message != null) {
-            String url = "includes/alert-invoice.jsp";
+            String url = "includes/alert.jsp";
             
             if (message.equals("Success!")) {
                 request.setAttribute("alertStyle", "alert alert-success");

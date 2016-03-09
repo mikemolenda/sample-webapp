@@ -35,41 +35,38 @@ public class InvoiceAction extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String total = (String) request.getAttribute("total");
+        String role = null;
+
+        Customer customer = (Customer) request.getAttribute("customer");
+        BigDecimal total = EntityData.calculateOrderTotal(customer);
+        
         String action = null;
         String url = "/includes/action-button.jsp";
         String btntext = "Submit";
 
         synchronized (session) {
-
-            if (session.getAttribute("user") != null) {
-
-                // Get user role
-                User user = (User) session.getAttribute("user");
-                String role = user.getRole();
-
-                // Set action based on user type
-                if (role.equals("Customer")) {
-                    action = "PayBill";
-                    btntext = "Pay Bill $" + total;
-                }
-                
-                if (role.equals("Manager") || 
-                    role.equals("Account Specialist")) {
-                    action = "";
-                    btntext = "View Different Invoice";
-                }
-            }
+            // Get user role
+            role = (String) session.getAttribute("role");
         } // end synchronized
+
+        // Set action based on user type
+        if (role.equals("Customer")) {
+            action = "PayBill";
+            btntext = "Pay Bill $" + total;
+        }
+        
+        if (role.equals("Manager") || 
+            role.equals("Account Specialist")) {
+            action = "";
+            btntext = "View Different Invoice";
+        }
 
         if (action != null) {         
             request.setAttribute("action", action);
             request.setAttribute("btntext", btntext);
             
             request.getRequestDispatcher(url).include(request, response);
-        }
-
-        
+        }        
     }
 
     /**

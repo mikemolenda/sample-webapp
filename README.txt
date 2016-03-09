@@ -1,7 +1,7 @@
-Week 7 Assignment #4  
-Northwestern University  
 CIS 419 Web Application Development, Winter 2016  
-February 26, 2016  
+Final Project 
+Northwestern University  
+March 13, 2016  
 
 Mike Molenda  
 michaelmolenda2014@u.northwestern.edu   
@@ -12,6 +12,10 @@ michaelmolenda2014@u.northwestern.edu
 
 Deploy the app by copying the contents of Deploy/wirecast to: 
 {TOMCAT_HOME}/webapps/wirecast 
+
+The application context should look like the following:
+
+
 
 ---
 
@@ -52,19 +56,19 @@ TOTAL:
 
 ## Requirements Implemented
 
-I. Enrollment                                           STARTED
-  A. TV plan enrollment                                 STARTED  
+I. Enrollment                                           IMPLEMENTED  
+  A. TV plan enrollment                                 IMPLEMENTED  
     1. Basic                                            IMPLEMENTED  
     2. BasicPlus                                        IMPLEMENTED  
     3. Ultimate                                         IMPLEMENTED  
-  B. Internet plan Enrollment                           STARTED
+  B. Internet plan Enrollment                           IMPLEMENTED  
     a. SpeedLane                                        IMPLEMENTED  
     b. LightLane                                        IMPLEMENTED  
 
-II. Ordering                                            STARTED
-  A. PPV Live Sports Events                             STARTED
+II. Ordering                                            IMPLEMENTED  
+  A. PPV Live Sports Events                             IMPLEMENTED  
     1. Hard-Code 10 Events                              IMPLEMENTED
-  B. PPV Movies                                         STARTED
+  B. PPV Movies                                         IMPLEMENTED  
     1. Hard-Code 20 Movies                              IMPLEMENTED
 
 III. Roles
@@ -81,10 +85,12 @@ III. Roles
     2. Close incident ticket                            NOT ATTEMPTED  
     3. Cancel incident ticket                           NOT ATTEMPTED  
   D. Customer
-    1. Update personal info                             NOT ATTEMPTED  
-    2. Pay Monthly Bill                                 NOT ATTEMPTED  
-    3. Order PPV event                                  STARTED  
-    4. Cancel ordered PPV (> 24 hrs b/f PPV date)       NOT ATTEMPTED  
-    5. Change/Cancel/Add TV or Internet plan            STARTED  
+    1. Update personal info                             IMPLEMENTED  
+    2. Pay Monthly Bill                                 IMPLEMENTED    
+    3. Order PPV event                                  IMPLEMENTED    
+    4. Cancel ordered PPV (> 24 hrs b/f PPV date)       IMPLEMENTED  
+    5. Change/Cancel/Add TV or Internet plan            IMPLEMENTED  
   E. All users
-    1. Have login & password (hard code in Map)         IMPLEMENTED, NOT TESTED  
+    1. Have login & password (hard code in Map)         IMPLEMENTED  
+IV. Search Autocomplete                                 STARTED  
+

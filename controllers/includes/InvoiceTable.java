@@ -38,7 +38,6 @@ public class InvoiceTable extends HttpServlet {
         Map<String, Order> orders = EntityData.getOrders();
         Customer customer = (Customer) request.getAttribute("customer");
         String url;
-        BigDecimal total = new BigDecimal("0.00");
 
         // Set table column header text
         request.setAttribute("th1", "Order ID");
@@ -67,10 +66,6 @@ public class InvoiceTable extends HttpServlet {
                 request.setAttribute("paramType", "removeOrder");
                 request.setAttribute("param", order.getOrderId());
                 request.setAttribute("btntext", "Cancel");
-
-                // Add price to bill total
-                total = total.add(item.getPrice());
-                request.setAttribute("total", total);
 
                 // Generate table row
                 url = "/includes/table-tr-form-5.jsp";

@@ -7,7 +7,7 @@
     <h1>Invoice for <%= request.getAttribute("customerName") %></h1>
 
     <%-- Display status message for add/remove actions, if any --%>
-    <jsp:include page="/InvoiceMessage" flush="true"/>
+    <jsp:include page="/AlertMessage" flush="true"/>
 
     <hr>
 
