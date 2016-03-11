@@ -30,14 +30,21 @@ Login credentials for all roles:
 
 There are two sample users for each role. Usernames match the role type:
 
-- customer1
-- customer2
-- manager1
-- manager2
-- technician1
-- technician2
-- accountadmin1
-- accountadmin2
+Customers:
+  - customer1
+  - customer2
+
+Managers:
+  - manager1
+  - manager2
+
+Technicians: 
+  - technician1
+  - technician2
+
+Account Specialists:
+  - admin1
+  - admin2
 
 All sample users have the same password, regardless of role: cis419
 
@@ -47,29 +54,23 @@ All users are assigned a role type. Logging in automatically takes the user to t
 
 #  Statistics
 
-## Total Lines of Code (incl. whitespace & comments)
+## Lines of Code (incl. whitespace & comments)
+
+TOTAL:      
 
 index.jsp:  
 
-TOTAL:      
 
 
 ## Requirements Implemented
 
 I. Enrollment                                           IMPLEMENTED  
-  A. TV plan enrollment                                 IMPLEMENTED  
-    1. Basic                                            IMPLEMENTED  
-    2. BasicPlus                                        IMPLEMENTED  
-    3. Ultimate                                         IMPLEMENTED  
-  B. Internet plan Enrollment                           IMPLEMENTED  
-    a. SpeedLane                                        IMPLEMENTED  
-    b. LightLane                                        IMPLEMENTED  
+  A. TV plan enrollment - 3 packages                    IMPLEMENTED  
+  B. Internet plan Enrollment - 2 packages              IMPLEMENTED  
 
 II. Ordering                                            IMPLEMENTED  
-  A. PPV Live Sports Events                             IMPLEMENTED  
-    1. Hard-Code 10 Events                              IMPLEMENTED
-  B. PPV Movies                                         IMPLEMENTED  
-    1. Hard-Code 20 Movies                              IMPLEMENTED
+  A. PPV Live Sports Events - Hard-Code 10 Events       IMPLEMENTED
+  B. PPV Movies - Hard-Code 20 Movies                   IMPLEMENTED
 
 III. Roles
   A. Manager
@@ -81,9 +82,9 @@ III. Roles
     3. Create incident ticket & assign to Technician    NOT ATTEMPTED        
     4. Place PPV order                                  NOT ATTEMPTED  
   C. Technician
-    1. Schedule incident ticket                         NOT ATTEMPTED  
-    2. Close incident ticket                            NOT ATTEMPTED  
-    3. Cancel incident ticket                           NOT ATTEMPTED  
+    1. Schedule incident ticket                         IMPLEMENTED    
+    2. Close incident ticket                            IMPLEMENTED    
+    3. Cancel incident ticket                           IMPLEMENTED    
   D. Customer
     1. Update personal info                             IMPLEMENTED  
     2. Pay Monthly Bill                                 IMPLEMENTED    

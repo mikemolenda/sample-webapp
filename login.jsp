@@ -9,11 +9,7 @@
     <hr>
 
     <%-- Warn user if login invalid --%>
-    <% if (session.getAttribute("login").equals("invalid")) { %> 
-    <div class="alert alert-danger">
-      <strong>Error:</strong> Invalid username or password
-    </div>
-    <% } %>
+    <jsp:include page="/AlertMessage" flush="true"/>
 
     <div class="panel panel-default" id="login">
       <div class="panel-heading">

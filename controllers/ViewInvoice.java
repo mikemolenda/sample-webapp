@@ -7,7 +7,7 @@
  * Account Specialist or Manager.
  * 
  * Northwestern University
- * CIS 419 Web Application Development, Winter 2017
+ * CIS 419 Web Application Development, Winter 2016
  * Final Project
  *
  * March 13, 2016
@@ -46,6 +46,7 @@ public class ViewInvoice extends HttpServlet {
         String role = "";
         Customer customer = null;
         String message = null;
+        String messageStyle = null;
 
         synchronized(session) {
 
@@ -87,18 +88,24 @@ public class ViewInvoice extends HttpServlet {
                 if (item != null) {
                     // Add order and get status message
                     message = EntityData.addOrder(new Order(item, customer));
+
+                    messageStyle = 
+                        message.matches(".*[Ss]uccess.*") ? "success" : "danger";
                 }
             }
 
             // If removeOrder passed, remove order
             if (removeOrder != null) {
                 message = EntityData.removeOrder(removeOrder);
+                messageStyle = 
+                    message.matches(".*[Ss]uccess.*") ? "success" : "danger";
             }
 
             // Set attributes for view
             String customerName = 
                 customer.getFName() + " " + customer.getLName();
                 request.setAttribute("message", message);
+                request.setAttribute("messageStyle", messageStyle);
                 request.setAttribute("customer", customer);
                 request.setAttribute("customerName", customerName);
 

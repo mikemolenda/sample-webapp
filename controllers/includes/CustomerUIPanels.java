@@ -4,7 +4,7 @@
  * Generates UI panels for customer home page.
  * 
  * Northwestern University
- * CIS 419 Web Application Development, Winter 2017
+ * CIS 419 Web Application Development, Winter 2016
  * Final Project
  *
  * March 13, 2016

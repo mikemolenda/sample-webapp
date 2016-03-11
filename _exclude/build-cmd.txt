@@ -1,3 +1,5 @@
+cd /home/ubuntu/Dropbox/Source/CIS419/project/
+
 sudo tomcat-stop
 
 javac controllers/*.java

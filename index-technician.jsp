@@ -2,32 +2,31 @@
 
 <div class="container-fluid">    
   <div class="col-sm-12 text-center"> 
-    <h1>Welcome to WideCast!</h1>
-    <h2>Technician Dashboard</h2>
-    <img class="img-responsive img-center" src="img/main.jpg" alt="WideCast Cable">
+    <h1>WideCast Technician Dashboard</h1>
+
+    <img class="img-responsive img-center" src="img/main-tech.jpg" alt="WideCast Cable">
+
+    <h3>Technician: <%= session.getAttribute("fullname") %></h3>
 
     <hr>
 
     <div class="row" id="row1">
-      <div class="col-sm-4">
-        <a href="ViewTickets" class="btn btn-danger btn-block">View Open Tickets</a>
+      <div class="col-sm-3">
+        <a href="ViewTickets?status=open" class="btn btn-info btn-block">View Open Tickets</a>
       </div>
-      <div class="col-sm-4">
-        <a href="Account" class="btn btn-danger btn-block">Manage My Account</a>
+      <div class="col-sm-3">
+        <a href="ViewTickets?status=closed" class="btn btn-info btn-block">View Completed Tickets</a>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
+        <a href="AddTicket" class="btn btn-success btn-block">Add a New Ticket</a>
+      </div>
+      <div class="col-sm-3">
         <a href="Logout" class="btn btn-danger btn-block">Logout</a>
       </div>
     </div><!-- end row 1 -->
 
     <hr>
 
-    <div class="row" id="row2">
-
-      <%-- Generate UI panels used for app navigation --%>
-      <jsp:include page="/CustomerUIPanels" flush="true" />
-
-    </div><!--end row 2 -->
   </div>
 </div><!-- end container -->    
 

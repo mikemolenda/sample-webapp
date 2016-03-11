@@ -51,15 +51,20 @@ public class Login extends HttpServlet {
                         session.setAttribute("fullname", 
                             (user.getFName() + " " + user.getLName()));
                         session.setAttribute("role", user.getRole());
-                        session.setAttribute("login", "valid");
                     }
                 } else {
                     // Password invalid
-                    session.setAttribute("login", "invalid");
+                    request.setAttribute("messageStyle", "danger");
+                    request.setAttribute("message", "Invalid password");
                 }
 
             } // end synchronized
+        } else {
+            // Username invalid
+            request.setAttribute("messageStyle", "danger");
+            request.setAttribute("message", "Invalid username");
         }
+
         // Redirect Home        
         request.getRequestDispatcher("/Home").forward(request, response);
     }

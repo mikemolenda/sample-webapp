@@ -30,7 +30,7 @@ public class Home extends HttpServlet {
         put("Customer", "/index-customer.jsp");
         put("Manager", "/index-manager.jsp");
         put("Account Specialist", "/index-account-specialist.jsp");
-        put("Technician", "/index-account-specialist.jsp");
+        put("Technician", "/index-technician.jsp");
     }};
 
     /**
@@ -51,10 +51,6 @@ public class Home extends HttpServlet {
             if (session.getAttribute("user") == null) {
                 // If session user null, set login and role to none
                 role = "None";
-                if (session.getAttribute("login") == null) {
-                    // If login null, set to none
-                    session.setAttribute("login", "none");
-                }
             } else {
                 // Otherwise set role to session user role
                 role = (String) session.getAttribute("role");

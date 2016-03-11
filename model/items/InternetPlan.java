@@ -27,4 +27,4 @@ public class InternetPlan extends Item implements java.io.Serializable {
     public InternetPlan(String itemId, String name, BigDecimal price) {
         super(itemId, name, price, "Internet Plan");
     }    
-}
+} 

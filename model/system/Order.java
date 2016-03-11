@@ -1,5 +1,5 @@
 /* 
- * Ticket
+ * Order
  * 
  * Represents an order that can be placed by a Customer, and manipulated by an 
  * Account Specialist or Manager
@@ -14,14 +14,14 @@
  * michaelmolenda2014@u.northwestern.edu 
  */
 
-package model.system;
+package model.system; 
 
 import java.text.*;
 import java.util.*;
 
 import model.*;
 import model.items.*;
-import model.roles.*;
+import model.roles.*; 
 
 public class Order implements java.io.Serializable {
 

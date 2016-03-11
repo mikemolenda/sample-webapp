@@ -1,5 +1,3 @@
-<%@ page import="model.EntityData" %>
-
 <%@ include file="includes/header.jsp" %>
 
 <div class="container-fluid">    

@@ -35,6 +35,9 @@ public class Logout extends HttpServlet {
             session.invalidate();
         } // end synchronized 
 
+        request.setAttribute("messageStyle", "success");
+        request.setAttribute("message", "Logout Successful");
+
         // Redirect Home        
         request.getRequestDispatcher("/Home").forward(request, response);
 

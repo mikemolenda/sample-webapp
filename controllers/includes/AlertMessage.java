@@ -4,7 +4,7 @@
  * Displays the status message returned by add/remove order actions.
  * 
  * Northwestern University
- * CIS 419 Web Application Development, Winter 2017
+ * CIS 419 Web Application Development, Winter 2016
  * Final Project
  *
  * March 13, 2016
@@ -29,15 +29,20 @@ public class AlertMessage extends HttpServlet {
             throws ServletException, IOException {
 
         String message = (String) request.getAttribute("message");
+        String messageStyle = (String) request.getAttribute("messageStyle");
 
         if (message != null) {
+            
             String url = "includes/alert.jsp";
             
-            if (message.equals("Success!")) {
-                request.setAttribute("alertStyle", "alert alert-success");
+            // Set messageStyle according to parameter
+            if (messageStyle != null) {
+                messageStyle = "alert alert-" + messageStyle; 
             } else {
-                request.setAttribute("alertStyle", "alert alert-danger");
+                messageStyle = "alert alert-info";
             }
+
+            request.setAttribute("messageStyle", messageStyle);
 
             request.getRequestDispatcher(url).include(request, response);
         }

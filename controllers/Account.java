@@ -4,7 +4,7 @@
  * Displays appropriate account management page for user
  * 
  * Northwestern University
- * CIS 419 Web Application Development, Winter 2017
+ * CIS 419 Web Application Development, Winter 2016
  * Final Project
  *
  * March 13, 2016
@@ -110,12 +110,15 @@ public class Account extends HttpServlet {
         String ccNo = request.getParameter("ccNo"); 
 
         String message;
+        String messageStyle;
         String url = "/account-info.jsp";
         String currentUser;
 
         // Update customer
         message = EntityData.modifyCustomer(username, email, password, fName, 
             lName, ccNo);
+        messageStyle = message.matches(".*[Ss]uccess.*") ? "success" : "danger";
+
         Customer customer = (Customer) EntityData.getUsers().get(username);
 
         synchronized (session) {
@@ -138,6 +141,7 @@ public class Account extends HttpServlet {
 
         // Set message and redirect to appropriate URL
         request.setAttribute("message", message);
+        request.setAttribute("messageStyle", messageStyle);
         request.setAttribute("username", customer.getUsername());
         request.setAttribute("password", customer.getPassword());
         request.setAttribute("email", customer.getEmail());

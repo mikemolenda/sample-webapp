@@ -22,6 +22,7 @@
           <span class="glyphicon glyphicon-user"></span> 
           <%= session.getAttribute("username") %>'s Account
         </a></li>
+        <li><a href="Logout">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
       </ul>
     </div>
   </div>

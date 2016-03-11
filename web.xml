@@ -49,17 +49,6 @@
       <url-pattern></url-pattern><!-- maps Home to context root-->
   </servlet-mapping> 
 
-  <!-- AlertMessage -->
-  <servlet>
-      <servlet-name>AlertMessage</servlet-name>
-      <servlet-class>controllers.includes.AlertMessage</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-      <servlet-name>AlertMessage</servlet-name>
-      <url-pattern>/AlertMessage</url-pattern>
-  </servlet-mapping>  
-
   <!-- Account -->
   <servlet>
       <servlet-name>Account</servlet-name>
@@ -69,6 +58,28 @@
   <servlet-mapping>
       <servlet-name>Account</servlet-name>
       <url-pattern>/Account</url-pattern>
+  </servlet-mapping>  
+
+  <!-- AddTicket -->
+  <servlet>
+      <servlet-name>AddTicket</servlet-name>
+      <servlet-class>controllers.AddTicket</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>AddTicket</servlet-name>
+      <url-pattern>/AddTicket</url-pattern>
+  </servlet-mapping>
+
+  <!-- AlertMessage -->
+  <servlet>
+      <servlet-name>AlertMessage</servlet-name>
+      <servlet-class>controllers.includes.AlertMessage</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>AlertMessage</servlet-name>
+      <url-pattern>/AlertMessage</url-pattern>
   </servlet-mapping>  
 
 <!-- AutoComplete -->
@@ -190,7 +201,40 @@
   <servlet-mapping>
       <servlet-name>Search</servlet-name>
       <url-pattern>/Search</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping> 
+
+  <!-- SelectTechnician -->
+  <servlet>
+      <servlet-name>SelectTechnician</servlet-name>
+      <servlet-class>controllers.includes.SelectTechnician</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>SelectTechnician</servlet-name>
+      <url-pattern>/SelectTechnician</url-pattern>
+  </servlet-mapping>   
+
+  <!-- SelectCustomer -->
+  <servlet>
+      <servlet-name>SelectCustomer</servlet-name>
+      <servlet-class>controllers.includes.SelectCustomer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>SelectCustomer</servlet-name>
+      <url-pattern>/SelectCustomer</url-pattern>
+  </servlet-mapping>   
+
+  <!-- TicketTable -->
+  <servlet>
+      <servlet-name>TicketTable</servlet-name>
+      <servlet-class>controllers.includes.TicketTable</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>TicketTable</servlet-name>
+      <url-pattern>/TicketTable</url-pattern>
+  </servlet-mapping>   
 
   <!-- ViewInvoice -->
   <servlet>
@@ -201,6 +245,17 @@
   <servlet-mapping>
       <servlet-name>ViewInvoice</servlet-name>
       <url-pattern>/ViewInvoice</url-pattern>
+  </servlet-mapping>  
+
+  <!-- ViewTickets -->
+  <servlet>
+      <servlet-name>ViewTickets</servlet-name>
+      <servlet-class>controllers.ViewTickets</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ViewTickets</servlet-name>
+      <url-pattern>/ViewTickets</url-pattern>
   </servlet-mapping>  
 
 </web-app>

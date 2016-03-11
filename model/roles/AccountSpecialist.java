@@ -13,7 +13,7 @@
  * michaelmolenda2014@u.northwestern.edu 
  */
 
-package model.roles;
+package model.roles; 
 
 public class AccountSpecialist extends User implements java.io.Serializable {
 

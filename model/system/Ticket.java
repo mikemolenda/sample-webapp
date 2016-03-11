@@ -16,8 +16,9 @@
 package model.system;
 
 import java.util.*;
+import java.text.*;
 
-import model.*;
+import model.*; 
 import model.roles.*;
 
 public class Ticket implements java.io.Serializable {
@@ -62,6 +63,10 @@ public class Ticket implements java.io.Serializable {
         setScheduleDate(cal.getTime());
     }
 
+    public String getTicketId() {
+        return TICKET_ID;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -100,5 +105,13 @@ public class Ticket implements java.io.Serializable {
 
     public void setScheduleDate(Date scheduleDate) {
         this.scheduleDate = scheduleDate;
+    }
+
+    /**
+     * Returns scheduleDate as a formatted String.
+     */
+    public String dateString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        return sdf.format(getScheduleDate()); 
     }
 }

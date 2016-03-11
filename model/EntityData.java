@@ -6,7 +6,7 @@
  * Since this is an academic exercise, that's not such a big deal.
  * 
  * Northwestern University
- * CIS 419 Web Application Development, Winter 2017
+ * CIS 419 Web Application Development, Winter 2016
  * Final Project
  *
  * March 13, 2016
@@ -21,7 +21,7 @@ import java.math.*;
 import java.util.*;
 import java.util.Map.*;
 
-import model.items.*;
+import model.items.*; 
 import model.roles.*;
 import model.system.*;
 
@@ -41,13 +41,13 @@ public class EntityData {
             "cis419", "George-Michael", "Bluth")); 
         put("manager2", new Manager("manager2", "her?@widecast.net", 
             "cis419", "Ann", "Veal"));
-        put("technican1", new Technician("technican1", "tobias@widecast.net", 
+        put("technician1", new Technician("technician1", "tobias@widecast.net", 
             "cis419", "Tobias", "Funke"));
-        put("technican2", new Technician("technican2", "gene@widecast.net", 
+        put("technician2", new Technician("technician2", "gene@widecast.net", 
             "cis419", "Gene", "Parmesan"));
-        put("accountadmin1", new AccountSpecialist("csr1", "gangie@widecast.net", 
+        put("admin1", new AccountSpecialist("admin1", "gangie@widecast.net", 
             "cis419", "Lucille", "Bluth"));
-        put("accountadmin2", new AccountSpecialist("csr2", "poppop@widecast.net", 
+        put("admin2", new AccountSpecialist("admin2", "poppop@widecast.net", 
             "cis419", "George", "Bluth"));
     }};
 
@@ -126,7 +126,7 @@ public class EntityData {
             new BigDecimal("1.99")));
         put("34", new PPVMovie("34", "Freaked (1993)", 
             new BigDecimal("1.99")));
-        put("35", new PPVMovie("35", "Adam Sandler's Citizen Kane (2016)", 
+        put("35", new PPVMovie("35", "The Cable Guy (1996)", 
             new BigDecimal("1.99")));
     }};
 
@@ -136,7 +136,7 @@ public class EntityData {
 
 // Users actions
 
-    public static Map<String, User> getUsers() {
+    public static synchronized Map<String, User> getUsers() {
         return users;
     }   
 
@@ -151,7 +151,7 @@ public class EntityData {
         if (users.get(username) == null) {
             users.put(username, 
                 new Customer(username, email, password, fName, lName, ccNo));
-            condition = "Success!";
+            condition = "Customer created successfully";
         } else {
             condition = "A user with that username already exists!";
         }
@@ -168,7 +168,7 @@ public class EntityData {
 
         if (users.get(username) != null) {
             users.remove(username);
-            condition = "Success!";
+            condition = "Customer removed successfully";
         } else {
             condition = "There is no user with that username!";
         }
@@ -187,7 +187,7 @@ public class EntityData {
         if (users.get(username) != null) {
             users.put(username,
                 new Customer(username, email, password, fName, lName, ccNo));
-            condition = "Success!";
+            condition = "Customer data modified successfully";
         } else {
             condition = "There is no user with that username!";
         }
@@ -198,7 +198,7 @@ public class EntityData {
 
 // Items actions
 
-    public static Map<String, Item> getItems() {
+    public static synchronized Map<String, Item> getItems() {
         return items;
     }
 
@@ -227,7 +227,7 @@ public class EntityData {
 
 // Orders actions
 
-    public static Map<String, Order> getOrders() {
+    public static synchronized Map<String, Order> getOrders() {
         return orders;
     }
 
@@ -285,7 +285,7 @@ public class EntityData {
 
         // Otherwise add the item
         orders.put(order.getOrderId(), order);
-        condition = "Success!";
+        condition = "Successfully added order";
         return condition;
     }
 
@@ -314,7 +314,7 @@ public class EntityData {
         if (orders.containsKey(orderId)) {
             condition = "Order was not removed";
         } else {
-            condition = "Success!";
+            condition = "Successfully removed order";
         }
 
         return condition;
@@ -327,14 +327,14 @@ public class EntityData {
 
         String condition;   // Error/success condition of remove
 
-        if (role.equals("Account Specialist") || role.equals("Manager")) {
+        if (role.equals("Manager")) {
             
             orders.remove(orderId);
 
             if (orders.containsKey(orderId)) {
                 condition = "Order was not removed";
             } else {
-                condition = "Success!";
+                condition = "Successfully removed order";
             }
         } else {
             condition = "Not authorized to remove this order";
@@ -401,14 +401,151 @@ public class EntityData {
 
 // Tickets actions
 
-    public static Map<String, Ticket> getTickets() {
+    public static synchronized Map<String, Ticket> getTickets() {
         return tickets;
     }
 
+    /**
+     * Get tickets for specified technician only
+     */
+    public static synchronized Map<String, Ticket> getTickets(Technician tech) {
+        
+        Map<String, Ticket> technicianTickets = new HashMap<String, Ticket>();
+
+        for (Entry<String, Ticket> entry : tickets.entrySet()) {
+            String key = entry.getKey();
+            Ticket ticket = entry.getValue();
+
+            if (ticket.getTechnician().equals(tech)) {
+                technicianTickets.put(key, ticket);
+            }
+        }
+
+        return technicianTickets;
+    }
+
+    /**
+     * Adds a new support ticket
+     */
     public static synchronized String addTicket(Ticket ticket) {
 
         String condition;   // Error/success condition of add
 
-        return "";
+        // Do not add ticket if it is already in the list
+        if (tickets.containsValue(ticket)) {
+            condition = "Ticket already exists!";
+            return condition;
+        }
+
+        // Otherwise add the ticket
+        tickets.put(ticket.getTicketId(), ticket);
+        condition = "Successfully added ticket";
+
+        return condition;
     }
+
+    /**
+     * Technician ticket cancellation: Cancels a ticket only if the technician 
+     * specified matches the technician assigned to the ticket.
+     */
+    public static synchronized String cancelTicket(String ticketId, 
+        Technician technician) {
+        
+        String condition;    // Error/success condition of cancel
+
+        if (tickets.get(ticketId).getTechnician().equals(technician)) {
+
+            tickets.remove(ticketId);
+
+            if (tickets.containsKey(ticketId)) {
+                    condition = "Ticket was not cancelled";
+            } else {
+                condition = "Successfully cancelled ticket";
+            }
+        } else {
+            condition = "Not authorized to remove this ticket";
+        }
+
+        return condition;
+    }
+
+
+    /**
+     * Administrative ticket cancellation: Cancels any ticket, without 
+     * technician verification
+     */
+    public static synchronized String cancelTicket(String ticketId) {
+        
+        String condition;    // Error/success condition of cancel
+
+        tickets.remove(ticketId);
+
+        if (tickets.containsKey(ticketId)) {
+                condition = "Ticket was not cancelled";
+        } else {
+            condition = "Successfully cancelled ticket";
+        }
+
+        return condition;
+    }
+
+    /**
+     * Technician ticket completion: Completes a ticket only if the technician 
+     * specified matches the technician assigned to the ticket.
+     */
+    public static synchronized String completeTicket(String ticketId, 
+        Technician technician) {
+        
+        String condition;    // Error/success condition of complete
+        Ticket ticket = tickets.get(ticketId);
+
+        if (ticket.getTechnician().equals(technician)) {
+            if (ticket != null) {
+                ticket.setOpen(false);
+                tickets.put(ticketId, ticket);
+
+                if (!tickets.get(ticketId).isOpen()) {
+                    condition = "Ticket completed successfully";
+                } else {
+                    condition = "Ticket could not be completed";
+                }
+
+            } else {
+                condition = "There is no ticket with that ID!";
+            }
+            
+        } else {
+            condition = "Not authorized to remove this ticket";
+        }
+
+        return condition;
+    }
+
+    /**
+     * Administrative ticket completion: Completes any ticket, without 
+     * technician verification
+     */
+    public static synchronized String completeTicket(String ticketId) {
+        
+        String condition;    // Error/success condition of complete
+        Ticket ticket = tickets.get(ticketId);
+
+        if (ticket != null) {
+            ticket.setOpen(false);
+            tickets.put(ticketId, ticket);
+
+            if (!tickets.get(ticketId).isOpen()) {
+                condition = "Ticket completed successfully";
+            } else {
+                condition = "Ticket could not be completed";
+            }
+
+        } else {
+            condition = "There is no ticket with that ID!";
+        }
+
+        return condition;
+    }
+
+
 }
