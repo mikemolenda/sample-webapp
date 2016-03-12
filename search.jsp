@@ -1,11 +1,12 @@
-<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/header-search.jsp" %>
 
-<div class="container-fluid" onload="init()">    
+<div class="container-fluid">    
   <div class="col-sm-12 text-center">
 
     <h1>Search</h1>
 
-    <div class="autocomplete-container">
+    <div class="row" id="searchbar-row">
+
       <form action="AutoComplete">
         <input 
           type="text" 
@@ -14,13 +15,25 @@
           onkeyup="doCompletion()">
       </form>
 
+    </div><!-- end searchbar row -->
+
     <hr>
 
-    <table class="table table-hover" id="complete-table"></table>
+    <div class="row" id="results-row">
 
-    </div>
+      <table class="table table-hover">
+        <thead>
+          <th class="text-center">Results</th>
+        </thead>
+        <tbody id="complete-table"></tbody>
+      </table>
+
+    </div><!-- end results row -->
+
+    <hr>
 
   </div>
+</div><!-- end container -->
 
 <script src="js/autocomplete.js"></script>
 

@@ -1,8 +1,9 @@
 /*
- * NewCustomer
- * GET: Displays add customer form
- * POST: Adds customer to HashMap, displays confirmation
+ * AddOrder
+ * GET: Displays add order form
+ * POST: Adds order to HashMap, displays confirmation
  * Only available to admins and managers.
+ * Admins can only add PPVs
  *
  * Northwestern University
  * CIS 419 Web Application Development, Winter 2016
@@ -26,7 +27,7 @@ import model.roles.*;
 import model.items.*;
 import model.system.*;
 
-public class NewCustomer extends HttpServlet {
+public class AddOrder extends HttpServlet {
 
     /**
      * Handle GET requests
@@ -48,7 +49,7 @@ public class NewCustomer extends HttpServlet {
         } // end synchronized
 
         if (role.equals("Manager") || role.equals("Account Specialist")) {
-            url = "/add-customer.jsp";
+            url = "/add-order.jsp";
         }
 
         request.getRequestDispatcher(url).forward(request, response);
@@ -75,20 +76,38 @@ public class NewCustomer extends HttpServlet {
             }
         } // end synchronized
 
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String fName = request.getParameter("fName");
-        String lName = request.getParameter("lName");
-        String ccNo = request.getParameter("ccNo");        
+        String customerId = request.getParameter("customerId");
+        String itemId = request.getParameter("itemId");
 
-        // If manager or admin, add customer and display customer list
-        if (role.equals("Manager") || role.equals("Account Specialist")) {
-            url = "ViewCustomers";
-            message = EntityData.addCustomer(username, email, password, fName, 
-                    lName, ccNo);
-            messageStyle = 
+        Customer customer = null;
+        Item item = null;
+
+        if (customerId != null && itemId != null) {
+            customer = (Customer) EntityData.getUsers().get(customerId);
+            item = EntityData.getItems().get(itemId);
+        }
+
+        if (customer != null && item != null) {
+            url = "ViewOrders";
+
+            // Account admins can only add PPV
+            if (role.equals("Account Specialist")) {
+                if (item.getCategory().matches(".*PPV.*")) {
+                    message = EntityData.addOrder(new Order(item, customer));
+                    messageStyle = 
+                        message.matches(".*[Ss]uccess.*") ? "success" : "danger";
+                } else {
+                    message = "Not authorized to add " + item.getCategory();
+                    messageStyle = "danger";
+                }
+            }
+
+            // Managers can add any item type
+            if (role.equals("Manager")) {
+                message = EntityData.addOrder(new Order(item, customer));
+                messageStyle = 
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
+            }
         }
 
         // Set message and redirect to appropriate URL

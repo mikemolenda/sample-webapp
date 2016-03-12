@@ -62,18 +62,13 @@ public class AutoComplete extends HttpServlet {
                 for (Entry<String, Item> entry : items.entrySet()) {
                     Item item = entry.getValue();
                     String name = item.getName();
-                    String cat = item.getCategory();
-                    String longName = name + " " + cat;
 
-                    // Check against: name, category, name + category
-                    if (name.toLowerCase().startsWith(targetId) || 
-                            cat.toLowerCase().startsWith(targetId) || 
-                            longName.toLowerCase().startsWith(targetId)) {
+                    // Check against: name
+                    if (name.toLowerCase().startsWith(targetId)) {
                         // If match found, add data to XML response
                         sb.append("<item>");
                         sb.append("<id>" + entry.getKey() + "</id>");
                         sb.append("<name>" + name + "</name>");
-                        sb.append("<category>" + cat + "</category>");
                         sb.append("</item>");
                         itemsAdded = true;
                     }

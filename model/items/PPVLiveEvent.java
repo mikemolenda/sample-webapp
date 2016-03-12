@@ -47,7 +47,7 @@ public class PPVLiveEvent extends Item implements java.io.Serializable {
      * Returns eventDate as a formatted String.
      */
     public String dateString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM, d, h:mm a z");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM, d, h:mm a");
         return sdf.format(getEventDate()); 
     }
 }

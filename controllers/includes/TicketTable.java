@@ -38,8 +38,11 @@ public class TicketTable extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+
         Map<String, Ticket> tickets;
         String status = request.getParameter("status");
+        String role = null;
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -52,6 +55,11 @@ public class TicketTable extends HttpServlet {
         } else {
             // Get tickets for all technicians
             tickets = EntityData.getTickets();
+        }
+
+        // Get role
+        synchronized (session) {
+            role = (String) session.getAttribute("role");
         }
 
         // Generate table header
@@ -84,15 +92,19 @@ public class TicketTable extends HttpServlet {
                         out.println("<td>" + customerName + "</td>");
                         out.println("<td>" + t.dateString() + "</td>");
                         out.println("<td>" + t.getMessage() + "</td>");
-                        out.println("<td>");
-                        out.println("<a href=\"ViewTickets?completeTicket="
-                            + t.getTicketId() 
-                            + "\" class=\"btn btn-success btn-sm\">Complete</a>");
-                        out.println("&nbsp;");
-                        out.println("<a href=\"ViewTickets?cancelTicket="
-                            + t.getTicketId() 
-                            + "\" class=\"btn btn-danger btn-sm\">Cancel</a>");
-                        out.println("</td>");
+                        if (role.equals("Account Specialist")) {
+                            out.println("<td><strong>Open</strong></td>");
+                        } else {
+                            out.println("<td>");
+                            out.println("<a href=\"ViewTickets?completeTicket="
+                                + t.getTicketId() 
+                                + "\" class=\"btn btn-success btn-sm\">Complete</a>");
+                            out.println("&nbsp;");
+                            out.println("<a href=\"ViewTickets?cancelTicket="
+                                + t.getTicketId() 
+                                + "\" class=\"btn btn-danger btn-sm\">Cancel</a>");
+                            out.println("</td>");
+                        } 
                         out.println("</tr>");
                     }
                 }
@@ -144,15 +156,19 @@ public class TicketTable extends HttpServlet {
 
                 // change last td based on completion status    
                 if (t.isOpen()) {
-                    out.println("<td>");
-                    out.println("<a href=\"ViewTickets?completeTicket="
-                        + t.getTicketId() 
-                        + "\" class=\"btn btn-success btn-sm\">Complete</a>");
-                    out.println("&nbsp;");
-                    out.println("<a href=\"ViewTickets?cancelTicket="
-                        + t.getTicketId() 
-                        + "\" class=\"btn btn-danger btn-sm\">Cancel</a>");
-                    out.println("</td>");
+                    if (role.equals("Account Specialist")) {
+                        out.println("<td><strong>Open</strong></td>");
+                    } else {
+                        out.println("<td>");
+                        out.println("<a href=\"ViewTickets?completeTicket="
+                            + t.getTicketId() 
+                            + "\" class=\"btn btn-success btn-sm\">Complete</a>");
+                        out.println("&nbsp;");
+                        out.println("<a href=\"ViewTickets?cancelTicket="
+                            + t.getTicketId() 
+                            + "\" class=\"btn btn-danger btn-sm\">Cancel</a>");
+                        out.println("</td>");
+                    }
                 } else { 
                     out.println("<td>Completed</td>");
                 }

@@ -32,3 +32,10 @@ footer {
 .img-center {
   margin: 0 auto;
 }
+
+/* Search table properties */
+
+
+#results-row {
+  min-height: 316px;
+}

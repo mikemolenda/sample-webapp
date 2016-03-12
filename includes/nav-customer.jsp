@@ -15,7 +15,7 @@
         <li><a href="ItemList?category=PPV+Live+Event">Events</a></li>
         <li><a href="ItemList?category=PPV+Movie">Movies</a></li>
         <li><a href="ViewInvoice">Billing</a></li>
-        <li><a href="Search">Search</a></li>
+        <li><a href="search.jsp">Search</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="Account">

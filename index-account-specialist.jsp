@@ -15,13 +15,13 @@
         <a href="NewCustomer" class="btn btn-info btn-block">Add New Customer</a>
       </div>
       <div class="col-sm-3">
-        <a href="ModifyCustomer" class="btn btn-info btn-block">Modify Customer</a>
+        <a href="UpdateCustomer" class="btn btn-info btn-block">Update Customer</a>
       </div>
       <div class="col-sm-3">
         <a href="AddTicket" class="btn btn-info btn-block">Add Support Ticket</a>
       </div>
       <div class="col-sm-3">
-        <a href="AddPPV" class="btn btn-info btn-block">Add PPV Order</a>
+        <a href="AddOrder" class="btn btn-info btn-block">Add PPV Order</a>
       </div>
 
     </div><!-- end row 1 -->

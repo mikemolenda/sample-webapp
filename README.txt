@@ -74,13 +74,13 @@ II. Ordering                                            IMPLEMENTED
 
 III. Roles
   A. Manager
-    1. Has all privileges                               NOT ATTEMPTED  
-    2. Cancel/update/delete any order                   NOT ATTEMPTED  
+    1. Has all privileges                               IMPLEMENTED  
+    2. Cancel/update/delete any order                   IMPLEMENTED  
   B. Account Specialist
-    1. Create new customer account                      NOT ATTEMPTED  
-    2. Update existing customer account                 NOT ATTEMPTED  
-    3. Create incident ticket & assign to Technician    NOT ATTEMPTED        
-    4. Place PPV order                                  NOT ATTEMPTED  
+    1. Create new customer account                      IMPLEMENTED  
+    2. Update existing customer account                 IMPLEMENTED  
+    3. Create incident ticket & assign to Technician    IMPLEMENTED        
+    4. Place PPV order                                  IMPLEMENTED    
   C. Technician
     1. Schedule incident ticket                         IMPLEMENTED    
     2. Close incident ticket                            IMPLEMENTED    
@@ -93,5 +93,5 @@ III. Roles
     5. Change/Cancel/Add TV or Internet plan            IMPLEMENTED  
   E. All users
     1. Have login & password (hard code in Map)         IMPLEMENTED  
-IV. Search Autocomplete                                 STARTED  
+IV. Search Autocomplete                                 IMPLEMENTED    
 

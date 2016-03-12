@@ -78,23 +78,20 @@ public class ViewTickets extends HttpServlet {
                 messageStyle = 
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
             }
+
+            // Set technician attributes for view
+            if (technician != null) {
+                String technicianName = 
+                    technician.getFName() + " " + technician.getLName();
+                request.setAttribute("technician", technician);
+                    request.setAttribute("technicianName", technicianName);
+            }
         }
 
         // If user is manager, view all tickets, allow cancel/complete
         if (role.equals("Manager") || role.equals("Account Specialist")) {
             
             url = "/tickets.jsp";
-
-            // If technicianId specified, get technician from Hashmap
-            if (technicianId != null) {
-                User targetUser = EntityData.getUsers().get(technicianId);            
-                
-                // Ensure technician is actually a technician
-                if (targetUser != null 
-                        && targetUser.getRole().equals("Technician")) {
-                    technician = (Technician) targetUser; 
-                }
-            }
 
             // If cancelTicket passed, cancel ticket
             if (cancelTicket != null) {
@@ -111,17 +108,10 @@ public class ViewTickets extends HttpServlet {
             }
         }
 
-        // If user is admin, 
-
-        // Set technician attributes for view
-        if (technician != null) {
-            String technicianName = 
-                technician.getFName() + " " + technician.getLName();
-            request.setAttribute("technician", technician);
-                request.setAttribute("technicianName", technicianName);
-        }
+        // If user is admin, view tickets only
 
 
+    
         // Set message attributes for view
         request.setAttribute("message", message);
         request.setAttribute("messageStyle", messageStyle);

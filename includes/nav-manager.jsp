@@ -12,8 +12,9 @@
       <ul class="nav navbar-nav">
         <li><a href="NewCustomer">New Customer</a></li>
         <li><a href="UpdateCustomer">Update Customer</a></li>
+        <li><a href="AddOrder">Add Order</a></li>
+        <li><a href="ModifyOrder">Modify Order</a></li>
         <li><a href="AddTicket">Add Ticket</a></li>
-        <li><a href="AddOrder">Add PPV Order</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="Logout">Logout <%= session.getAttribute("username") %>&nbsp;<span class="glyphicon glyphicon-log-out"></span>

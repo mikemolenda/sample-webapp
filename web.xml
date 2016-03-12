@@ -60,6 +60,17 @@
       <url-pattern>/Account</url-pattern>
   </servlet-mapping>  
 
+  <!-- AddOrder -->
+  <servlet>
+      <servlet-name>AddOrder</servlet-name>
+      <servlet-class>controllers.AddOrder</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>AddOrder</servlet-name>
+      <url-pattern>/AddOrder</url-pattern>
+  </servlet-mapping> 
+
   <!-- AddTicket -->
   <servlet>
       <servlet-name>AddTicket</servlet-name>
@@ -91,7 +102,18 @@
   <servlet-mapping>
       <servlet-name>AutoComplete</servlet-name>
       <url-pattern>/AutoComplete</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
+
+  <!-- CustomerTable -->
+  <servlet>
+      <servlet-name>CustomerTable</servlet-name>
+      <servlet-class>controllers.includes.CustomerTable</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>CustomerTable</servlet-name>
+      <url-pattern>/CustomerTable</url-pattern>
+  </servlet-mapping>    
 
   <!-- CustomerUIPanels -->
   <servlet>
@@ -148,6 +170,17 @@
       <url-pattern>/ItemOrderTable</url-pattern>
   </servlet-mapping> 
 
+  <!-- ListButton -->
+  <servlet>
+      <servlet-name>ListButton</servlet-name>
+      <servlet-class>controllers.includes.ListButton</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ListButton</servlet-name>
+      <url-pattern>/ListButton</url-pattern>
+  </servlet-mapping> 
+
   <!-- Login -->
   <servlet>
       <servlet-name>Login</servlet-name>
@@ -170,6 +203,28 @@
       <url-pattern>/Logout</url-pattern>
   </servlet-mapping>  
 
+  <!-- ModifyCustomer -->
+  <servlet>
+      <servlet-name>ModifyCustomer</servlet-name>
+      <servlet-class>controllers.ModifyCustomer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ModifyCustomer</servlet-name>
+      <url-pattern>/ModifyCustomer</url-pattern>
+  </servlet-mapping> 
+
+  <!-- ModifyOrder -->
+  <servlet>
+      <servlet-name>ModifyOrder</servlet-name>
+      <servlet-class>controllers.ModifyOrder</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ModifyOrder</servlet-name>
+      <url-pattern>/ModifyOrder</url-pattern>
+  </servlet-mapping> 
+
   <!-- NavBar -->
   <servlet>
       <servlet-name>NavBar</servlet-name>
@@ -179,6 +234,28 @@
   <servlet-mapping>
       <servlet-name>NavBar</servlet-name>
       <url-pattern>/NavBar</url-pattern>
+  </servlet-mapping>  
+
+  <!-- NewCustomer -->
+  <servlet>
+      <servlet-name>NewCustomer</servlet-name>
+      <servlet-class>controllers.NewCustomer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>NewCustomer</servlet-name>
+      <url-pattern>/NewCustomer</url-pattern>
+  </servlet-mapping> 
+
+  <!-- OrderTable -->
+  <servlet>
+      <servlet-name>OrderTable</servlet-name>
+      <servlet-class>controllers.includes.OrderTable</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>OrderTable</servlet-name>
+      <url-pattern>/OrderTable</url-pattern>
   </servlet-mapping>  
 
   <!-- PayBill -->
@@ -203,17 +280,6 @@
       <url-pattern>/Search</url-pattern>
   </servlet-mapping> 
 
-  <!-- SelectTechnician -->
-  <servlet>
-      <servlet-name>SelectTechnician</servlet-name>
-      <servlet-class>controllers.includes.SelectTechnician</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-      <servlet-name>SelectTechnician</servlet-name>
-      <url-pattern>/SelectTechnician</url-pattern>
-  </servlet-mapping>   
-
   <!-- SelectCustomer -->
   <servlet>
       <servlet-name>SelectCustomer</servlet-name>
@@ -223,6 +289,28 @@
   <servlet-mapping>
       <servlet-name>SelectCustomer</servlet-name>
       <url-pattern>/SelectCustomer</url-pattern>
+  </servlet-mapping>   
+
+  <!-- SelectItem -->
+  <servlet>
+      <servlet-name>SelectItem</servlet-name>
+      <servlet-class>controllers.includes.SelectItem</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>SelectItem</servlet-name>
+      <url-pattern>/SelectItem</url-pattern>
+  </servlet-mapping> 
+
+  <!-- SelectTechnician -->
+  <servlet>
+      <servlet-name>SelectTechnician</servlet-name>
+      <servlet-class>controllers.includes.SelectTechnician</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>SelectTechnician</servlet-name>
+      <url-pattern>/SelectTechnician</url-pattern>
   </servlet-mapping>   
 
   <!-- TicketTable -->
@@ -236,6 +324,28 @@
       <url-pattern>/TicketTable</url-pattern>
   </servlet-mapping>   
 
+  <!-- UpdateCustomer -->
+  <servlet>
+      <servlet-name>UpdateCustomer</servlet-name>
+      <servlet-class>controllers.UpdateCustomer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>UpdateCustomer</servlet-name>
+      <url-pattern>/UpdateCustomer</url-pattern>
+  </servlet-mapping>  
+
+  <!-- ViewCustomers -->
+  <servlet>
+      <servlet-name>ViewCustomers</servlet-name>
+      <servlet-class>controllers.ViewCustomers</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ViewCustomers</servlet-name>
+      <url-pattern>/ViewCustomers</url-pattern>
+  </servlet-mapping>  
+
   <!-- ViewInvoice -->
   <servlet>
       <servlet-name>ViewInvoice</servlet-name>
@@ -246,6 +356,17 @@
       <servlet-name>ViewInvoice</servlet-name>
       <url-pattern>/ViewInvoice</url-pattern>
   </servlet-mapping>  
+
+  <!-- ViewOrders -->
+  <servlet>
+      <servlet-name>ViewOrders</servlet-name>
+      <servlet-class>controllers.ViewOrders</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+      <servlet-name>ViewOrders</servlet-name>
+      <url-pattern>/ViewOrders</url-pattern>
+  </servlet-mapping>
 
   <!-- ViewTickets -->
   <servlet>

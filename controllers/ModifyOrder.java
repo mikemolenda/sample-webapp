@@ -1,8 +1,8 @@
 /*
- * NewCustomer
- * GET: Displays add customer form
- * POST: Adds customer to HashMap, displays confirmation
- * Only available to admins and managers.
+ * ModifyOrder
+ * GET, passed with orderId: Redirects to order modification form.
+ * GET, passed without parameter: Redirects to orders list with message.
+ * POST: Processes modify request.
  *
  * Northwestern University
  * CIS 419 Web Application Development, Winter 2016
@@ -26,11 +26,10 @@ import model.roles.*;
 import model.items.*;
 import model.system.*;
 
-public class NewCustomer extends HttpServlet {
+public class ModifyOrder extends HttpServlet {
 
     /**
      * Handle GET requests
-     * User arrives via link
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
@@ -39,32 +38,7 @@ public class NewCustomer extends HttpServlet {
 
         String role = null;
         String url = "Home";
-
-        // Get role
-        synchronized(session) {
-            if (session.getAttribute("role") != null) {
-                role = (String) session.getAttribute("role");
-            }
-        } // end synchronized
-
-        if (role.equals("Manager") || role.equals("Account Specialist")) {
-            url = "/add-customer.jsp";
-        }
-
-        request.getRequestDispatcher(url).forward(request, response);
-    }
-
-    /**
-     * Handle POST requests
-     * User submits info change
-     */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
- 
-        HttpSession session = request.getSession();
-
-        String role = null;
-        String url = "Home";
+        String orderId = request.getParameter("orderId");
         String message = null;
         String messageStyle = null;
 
@@ -75,21 +49,65 @@ public class NewCustomer extends HttpServlet {
             }
         } // end synchronized
 
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String fName = request.getParameter("fName");
-        String lName = request.getParameter("lName");
-        String ccNo = request.getParameter("ccNo");        
+        if (role.equals("Manager")) {
+            if (orderId != null) {
+                url = "/modify-order.jsp";
 
-        // If manager or admin, add customer and display customer list
-        if (role.equals("Manager") || role.equals("Account Specialist")) {
-            url = "ViewCustomers";
-            message = EntityData.addCustomer(username, email, password, fName, 
-                    lName, ccNo);
+                Order order = EntityData.getOrders().get(orderId);
+                Customer customer = order.getCustomer();
+                Item item = order.getItem();
+                
+                // Set attributes for order form
+                request.setAttribute("orderId", orderId);
+                request.setAttribute("customerName", customer.getFName() + " " 
+                    + customer.getLName());
+                request.setAttribute("itemName", item.getName());
+
+            } else {
+                url = "/ViewOrders";
+                message = "<strong>Attention: </strong>" 
+                        + "Please select an order to modify from the list below.";
+                messageStyle = "warning";
+            }
+        }
+
+        // Set message and redirect to appropriate URL
+        request.setAttribute("message", message);
+        request.setAttribute("messageStyle", messageStyle);
+
+        request.getRequestDispatcher(url).forward(request, response);
+    }
+
+    /**
+     * Handle POST requests
+     */
+    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+
+        String role = null;
+        String url = "Home";
+
+        String orderId = request.getParameter("orderId");
+        String itemId = request.getParameter("itemId");
+
+        String message = null;
+        String messageStyle = null;
+
+        // Get role
+        synchronized(session) {
+            if (session.getAttribute("role") != null) {
+                role = (String) session.getAttribute("role");
+            }
+        } // end synchronized
+
+        if (role.equals("Manager")) {
+            url = "/ViewOrders";
+            message = EntityData.modifyOrder(orderId, itemId);
             messageStyle = 
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
-        }
+        }        
 
         // Set message and redirect to appropriate URL
         request.setAttribute("message", message);

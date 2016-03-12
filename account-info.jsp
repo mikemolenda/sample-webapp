@@ -58,7 +58,10 @@
            name="username" 
            value="<%= request.getAttribute("username") %>">
 
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
+
+    <%-- Include "return to customer list" button if user admin or manager --%>
+    <jsp:include page="/ListButton" flush="true"/>
 
   </form>
 

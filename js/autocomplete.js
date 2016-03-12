@@ -97,15 +97,10 @@ function parseMessages(responseXML) {
                 var name = item.getElementsByTagName("name")[0];
                 var nameValue = name.childNodes[0].nodeValue;
 
-                var category = item.getElementsByTagName("category")[0];
-                var categoryValue = category.childNodes[0].nodeValue;
-
-                var longNameValue = nameValue + " (" + categoryValue + ")";
-
                 var itemId = item.getElementsByTagName("id")[0];
                 var itemIdValue = itemId.childNodes[0].nodeValue;
 
-                appendItem(itemIdValue, longNameValue);
+                appendItem(itemIdValue, nameValue);
             }
         }
     }
@@ -114,13 +109,13 @@ function parseMessages(responseXML) {
 /**
  * Appends each item returned by response XML to completeTable
  */
-function appendItem(itemId, longName) {
+function appendItem(itemId, name) {
 
     var tr;
     var td;
     var anchor;     // "lookup" action link
 
-    completeTable.style.display = 'table';
+    completeTable.style.display = 'table-row-group';
     tr = document.createElement("tr");
     td = document.createElement("td");
     tr.appendChild(td);
@@ -128,8 +123,8 @@ function appendItem(itemId, longName) {
     td.className = "popupCell";         // Adds CSS style
 
     anchor = document.createElement("a");
-    anchor.className = "popupItem"      // Adds CSS style
+    //anchor.className = "popupItem"      // Adds CSS style
     anchor.setAttribute("href", "AutoComplete?action=lookup&id=" + itemId);
-    anchor.appendChild(document.createTextNode(longName));
+    anchor.appendChild(document.createTextNode(name));
     td.appendChild(anchor);
 }

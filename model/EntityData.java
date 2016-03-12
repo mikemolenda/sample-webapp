@@ -141,6 +141,26 @@ public class EntityData {
     }   
 
     /**
+     * Returns only users with role Customer
+     */
+    public static synchronized Map<String, Customer> getCustomers() {
+        Map<String, Customer> customers = new HashMap<String, Customer>();
+        Customer customer = null;
+
+        for (Entry<String, User> entry : users.entrySet()) {
+            String key = entry.getKey();
+            User value = entry.getValue();
+
+            if (value.getRole().equals("Customer")) {
+                customer = (Customer) value;
+                customers.put(key, customer);
+            }
+        }
+
+        return customers;
+    }
+
+    /**
      * Adds a new customer account
      */
     public static synchronized String addCustomer(String username, String email, 
@@ -177,7 +197,7 @@ public class EntityData {
     }
 
     /**
-     * Modifies an existing customer's data
+     * Modifies an existing customer's data.
      */
     public static synchronized String modifyCustomer(String username, 
         String email, String password, String fName, String lName, String ccNo) {
@@ -193,13 +213,30 @@ public class EntityData {
         }
 
         return condition;
-
     }
 
 // Items actions
 
     public static synchronized Map<String, Item> getItems() {
         return items;
+    }
+
+    /**
+     * Returns only items of a specified category
+     */
+    public static synchronized Map<String, Item> getItemsByCategory(String cat) {
+        Map<String, Item> catItems = new HashMap<String, Item>();
+
+        for (Entry<String, Item> entry : items.entrySet()) {
+            String key = entry.getKey();
+            Item value = entry.getValue();
+
+            if (value.getCategory().equals(cat)) {
+                catItems.put(key, value);
+            }
+        }
+
+        return catItems;
     }
 
     private static int dayCounter = 1;  // Counter for use with getDate()
@@ -345,6 +382,24 @@ public class EntityData {
     }
 
     /**
+     * Modifies the item associated with an existing order
+     */
+    public static synchronized String modifyOrder(String orderId, String itemId) {
+        String condition;
+
+        if (orders.get(orderId) != null) {
+            Order order = orders.get(orderId);
+            order.setItem(items.get(itemId));
+            orders.put(orderId, order);
+            condition = "Order modified successfully";
+        } else {
+            condition = "Order could not be found";
+        }
+
+        return condition;
+    }
+
+    /**
      * Removes all of a specified user's orders
      */
     public static synchronized void clearOrders(Customer customer) {
@@ -367,6 +422,7 @@ public class EntityData {
             orders.remove(removeKey);
         }
     }
+
 
     /**
      * Checks whether a customer has any orders
@@ -546,6 +602,5 @@ public class EntityData {
 
         return condition;
     }
-
 
 }
