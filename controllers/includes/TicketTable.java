@@ -110,7 +110,6 @@ public class TicketTable extends HttpServlet {
                 }
 
                 out.println("</tbody>");
-
             } 
 
             if (status.equals("closed")) {
@@ -135,9 +134,7 @@ public class TicketTable extends HttpServlet {
                 }
 
                 out.println("</tbody>");
-
-            } 
-                
+            }              
         } else {
             // Display orders of all status types
             for (Entry<String, Ticket> entry : tickets.entrySet()) {
@@ -178,9 +175,7 @@ public class TicketTable extends HttpServlet {
 
             out.println("</tbody>");
         }
-
         // Don't close output stream, control returns to JSP
-
     }
 
     /**

@@ -62,7 +62,6 @@ public class SelectTechnician extends HttpServlet {
 
             out.println("</select>");
         }
-
         // Don't close output stream, control transfers back to JSP
     }
 

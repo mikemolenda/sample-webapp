@@ -108,10 +108,8 @@ public class ViewTickets extends HttpServlet {
             }
         }
 
-        // If user is admin, view tickets only
-
-
-    
+        // If user is admin, view tickets only (no action)
+   
         // Set message attributes for view
         request.setAttribute("message", message);
         request.setAttribute("messageStyle", messageStyle);

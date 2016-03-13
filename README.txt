@@ -10,8 +10,8 @@ michaelmolenda2014@u.northwestern.edu
 
 # Deployment
 
-Deploy the app by copying the contents of Deploy/wirecast to: 
-{TOMCAT_HOME}/webapps/wirecast 
+Deploy the app by copying the contents of Deploy/widecast to: 
+{TOMCAT_HOME}/webapps/widecast 
 
 The application context should look like the following:
 
@@ -56,7 +56,7 @@ All users are assigned a role type. Logging in automatically takes the user to t
 
 ## Lines of Code (incl. whitespace & comments)
 
-TOTAL:      
+TOTAL: 
 
 index.jsp:  
 
@@ -64,34 +64,32 @@ index.jsp:
 
 ## Requirements Implemented
 
-I. Enrollment                                           IMPLEMENTED  
-  A. TV plan enrollment - 3 packages                    IMPLEMENTED  
-  B. Internet plan Enrollment - 2 packages              IMPLEMENTED  
+I. Orders  
+  A. TV plan enrollment - 3 packages                    IMPLEMENTED CORRECTLY  
+  B. Internet plan Enrollment - 2 packages              IMPLEMENTED CORRECTLY  
+  C. PPV Live Sports Events - Hard-Code 10 Events       IMPLEMENTED CORRECTLY
+  D. PPV Movies - Hard-Code 20 Movies                   IMPLEMENTED CORRECTLY
 
-II. Ordering                                            IMPLEMENTED  
-  A. PPV Live Sports Events - Hard-Code 10 Events       IMPLEMENTED
-  B. PPV Movies - Hard-Code 20 Movies                   IMPLEMENTED
-
-III. Roles
+II. Roles   
   A. Manager
-    1. Has all privileges                               IMPLEMENTED  
-    2. Cancel/update/delete any order                   IMPLEMENTED  
+    1. Has all privileges                               IMPLEMENTED CORRECTLY  
+    2. Cancel/update/delete any order                   IMPLEMENTED CORRECTLY  
   B. Account Specialist
-    1. Create new customer account                      IMPLEMENTED  
-    2. Update existing customer account                 IMPLEMENTED  
-    3. Create incident ticket & assign to Technician    IMPLEMENTED        
-    4. Place PPV order                                  IMPLEMENTED    
+    1. Create new customer account                      IMPLEMENTED CORRECTLY  
+    2. Update existing customer account                 IMPLEMENTED CORRECTLY  
+    3. Create incident ticket & assign to Technician    IMPLEMENTED CORRECTLY        
+    4. Place PPV order                                  IMPLEMENTED CORRECTLY    
   C. Technician
-    1. Schedule incident ticket                         IMPLEMENTED    
-    2. Close incident ticket                            IMPLEMENTED    
-    3. Cancel incident ticket                           IMPLEMENTED    
+    1. Schedule incident ticket                         IMPLEMENTED CORRECTLY    
+    2. Close incident ticket                            IMPLEMENTED CORRECTLY    
+    3. Cancel incident ticket                           IMPLEMENTED CORRECTLY    
   D. Customer
-    1. Update personal info                             IMPLEMENTED  
-    2. Pay Monthly Bill                                 IMPLEMENTED    
-    3. Order PPV event                                  IMPLEMENTED    
-    4. Cancel ordered PPV (> 24 hrs b/f PPV date)       IMPLEMENTED  
-    5. Change/Cancel/Add TV or Internet plan            IMPLEMENTED  
+    1. Update personal info                             IMPLEMENTED CORRECTLY  
+    2. Pay Monthly Bill                                 IMPLEMENTED CORRECTLY    
+    3. Order PPV event                                  IMPLEMENTED CORRECTLY    
+    4. Cancel ordered PPV (> 24 hrs b/f PPV date)       IMPLEMENTED CORRECTLY  
+    5. Change/Cancel/Add TV or Internet plan            IMPLEMENTED CORRECTLY  
   E. All users
-    1. Have login & password (hard code in Map)         IMPLEMENTED  
-IV. Search Autocomplete                                 IMPLEMENTED    
+    1. Have login & password (hard code in Map)         IMPLEMENTED CORRECTLY  
+IV. Search Autocomplete                                 IMPLEMENTED CORRECTLY    
 

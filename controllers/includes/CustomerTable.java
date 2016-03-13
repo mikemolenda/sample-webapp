@@ -92,7 +92,6 @@ public class CustomerTable extends HttpServlet {
         out.println("</tbody>");
 
         // Do not close output stream, control returns to JSP
-
     }
 
     /**
@@ -102,5 +101,4 @@ public class CustomerTable extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-
 }

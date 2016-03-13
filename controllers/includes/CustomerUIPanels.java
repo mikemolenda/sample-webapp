@@ -34,13 +34,10 @@ public class CustomerUIPanels extends HttpServlet {
 
         makePanel(request, response, 
             "TV Plan", "TV Plans, from 50 to 200 channels");
-
         makePanel(request, response, 
             "Internet Plan", "High speed Internet access up to 50 Mbps");
-
         makePanel(request, response, 
             "PPV Live Event", "Live sporting events available for order");
-
         makePanel(request, response, 
             "PPV Movie", "Dozens of movies available on demand");
     }

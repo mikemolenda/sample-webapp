@@ -40,7 +40,5 @@ public class Logout extends HttpServlet {
 
         // Redirect Home        
         request.getRequestDispatcher("/Home").forward(request, response);
-
     }
-
 }

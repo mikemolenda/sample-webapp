@@ -81,6 +81,5 @@ public class PayBill extends HttpServlet {
         
         // Redirect to appropriate URL
         request.getRequestDispatcher(url).forward(request, response);
-
     }
 }

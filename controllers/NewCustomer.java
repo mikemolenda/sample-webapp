@@ -51,6 +51,7 @@ public class NewCustomer extends HttpServlet {
             url = "/add-customer.jsp";
         }
 
+        request.setAttribute("fullName", "new customer");
         request.getRequestDispatcher(url).forward(request, response);
     }
 
