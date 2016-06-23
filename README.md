@@ -36,10 +36,10 @@ By default, there are two sample users for each role:
 -  username: admin1 / password: cis419
 -  username: admin2 / password: cis419
 
-Each user's name matches their role.
+Each user's name matches their role.  
 All users share the password cis419 by default.
 
-All users are assigned a role type.
+All users are assigned a role type.  
 Logging in automatically takes user to the appropriate homepage for their role.
 
 ---
@@ -47,9 +47,9 @@ Logging in automatically takes user to the appropriate homepage for their role.
 ## Completed as part of academic coursework:
 
 CIS 419 Web Application Development, Winter 2016  
-Final Project
-Northwestern University
-March 13, 2016
+Final Project  
+Northwestern University  
+March 13, 2016  
 
-Mike Molenda
+Mike Molenda  
 michaelmolenda2014@u.northwestern.edu
