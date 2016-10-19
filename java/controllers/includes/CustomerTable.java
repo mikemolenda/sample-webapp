@@ -1,17 +1,8 @@
 /* 
  * CustomerTable
- * 
+ *
  * Displays a table of active customers.
  * Managers and Admins can update or cancel any one.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -30,12 +21,12 @@ public class CustomerTable extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
 
-        Map<String, Customer> customers = EntityData.getCustomers();         
+        Map<String, Customer> customers = EntityData.getCustomers();
         String role = null;
         String message = (String) request.getAttribute("message");
         String messageStyle = (String) request.getAttribute("messageStyle");
@@ -69,7 +60,7 @@ public class CustomerTable extends HttpServlet {
 
                 String username = customer.getUsername();
                 String name = customer.getLName() + ", " + customer.getFName();
-                String email = customer.getEmail(); 
+                String email = customer.getEmail();
                 String password = customer.getPassword();
                 String ccNo = customer.getCreditCardNo();
 
@@ -80,10 +71,10 @@ public class CustomerTable extends HttpServlet {
                 out.println("<td>" + password + "</td>");
                 out.println("<td>" + ccNo + "</td>");
                 out.println("<td>");
-                out.println("<a href=\"Account?customerId=" + username 
+                out.println("<a href=\"Account?customerId=" + username
                     + "\" class=\"btn btn-info btn-sm\">Update</a>");
                 out.println("&nbsp;");
-                out.println("<a href=\"ViewCustomers?removeCustomer=" + username 
+                out.println("<a href=\"ViewCustomers?removeCustomer=" + username
                     + "\" class=\"btn btn-danger btn-sm\">Remove</a>");
                 out.println("</tr>");
             }
@@ -97,7 +88,7 @@ public class CustomerTable extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

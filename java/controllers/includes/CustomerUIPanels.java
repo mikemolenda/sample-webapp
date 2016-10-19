@@ -1,16 +1,7 @@
 /* 
  * CustomerUIPanels
- * 
+ *
  * Generates UI panels for customer home page.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -29,29 +20,29 @@ public class CustomerUIPanels extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        makePanel(request, response, 
+        makePanel(request, response,
             "TV Plan", "TV Plans, from 50 to 200 channels");
-        makePanel(request, response, 
+        makePanel(request, response,
             "Internet Plan", "High speed Internet access up to 50 Mbps");
-        makePanel(request, response, 
+        makePanel(request, response,
             "PPV Live Event", "Live sporting events available for order");
-        makePanel(request, response, 
+        makePanel(request, response,
             "PPV Movie", "Dozens of movies available on demand");
     }
 
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
 
     public void makePanel(
-            HttpServletRequest request, HttpServletResponse response, 
+            HttpServletRequest request, HttpServletResponse response,
             String title, String body) throws ServletException, IOException {
 
         String url = "includes/ui-panel.jsp";

@@ -1,16 +1,7 @@
 /* 
  * ListButton
- * 
+ *
  * Displays a "Return to Customer List" button for managers and admins.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -25,7 +16,7 @@ public class ListButton extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -43,7 +34,7 @@ public class ListButton extends HttpServlet {
         // If role manager or admin, print button
         if (role.equals("Manager") || role.equals("Account Specialist")) {
             out.println("&nbsp;");
-            out.println("<a href=\"ViewCustomers\" class=\"btn btn-info\">" 
+            out.println("<a href=\"ViewCustomers\" class=\"btn btn-info\">"
                 + "Return to Customer List</a>");
         }
 
@@ -53,7 +44,7 @@ public class ListButton extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

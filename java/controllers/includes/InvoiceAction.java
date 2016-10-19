@@ -1,18 +1,9 @@
 /* 
  * InvoiceAction
- * 
+ *
  * Displays an action button for user, depending on role.
  * Customers get a "Pay Bill" button.
  * Admins get a "View Different Invoice" button.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -31,7 +22,7 @@ public class InvoiceAction extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -39,7 +30,7 @@ public class InvoiceAction extends HttpServlet {
 
         Customer customer = (Customer) request.getAttribute("customer");
         BigDecimal total = EntityData.calculateOrderTotal(customer);
-        
+
         String action = null;
         String url = "/includes/action-button.jsp";
         String btntext = "Submit";
@@ -54,25 +45,25 @@ public class InvoiceAction extends HttpServlet {
             action = "PayBill";
             btntext = "Pay Bill $" + total;
         }
-        
-        if (role.equals("Manager") || 
+
+        if (role.equals("Manager") ||
             role.equals("Account Specialist")) {
             action = "";
             btntext = "View Different Invoice";
         }
 
-        if (action != null) {         
+        if (action != null) {
             request.setAttribute("action", action);
             request.setAttribute("btntext", btntext);
-            
+
             request.getRequestDispatcher(url).include(request, response);
-        }        
+        }
     }
 
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

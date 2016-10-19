@@ -1,16 +1,7 @@
 /* 
  * NavBar
- * 
+ *
  * Displays the appropriate nav bar for the user type.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -28,7 +19,7 @@ public class NavBar extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -41,10 +32,10 @@ public class NavBar extends HttpServlet {
             role = (String) session.getAttribute("role");
         } // end synchronized
 
-        // Set navbar based on role 
+        // Set navbar based on role
         if (role != null) {
-            navbar = "/includes/nav-" 
-                    + role.toLowerCase().replace(' ', '-') 
+            navbar = "/includes/nav-"
+                    + role.toLowerCase().replace(' ', '-')
                     + ".jsp";
         } else {
             navbar = "/includes/nav-login.jsp";
@@ -56,7 +47,7 @@ public class NavBar extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

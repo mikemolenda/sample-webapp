@@ -1,16 +1,7 @@
 /* 
  * InvoiceTable
- * 
+ *
  * Displays a table with all of a customer's current orders.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -32,7 +23,7 @@ public class InvoiceTable extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         Map<String, Order> orders = EntityData.getOrders();
@@ -41,9 +32,9 @@ public class InvoiceTable extends HttpServlet {
 
         // Set table column header text
         request.setAttribute("th1", "Order ID");
-        request.setAttribute("th2", "Item");        
+        request.setAttribute("th2", "Item");
         request.setAttribute("th3", "Order Date");
-        request.setAttribute("th4", "Price");  
+        request.setAttribute("th4", "Price");
         request.setAttribute("th5", "&nbsp;");
 
         // Generate table header
@@ -77,7 +68,7 @@ public class InvoiceTable extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

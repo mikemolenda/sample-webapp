@@ -1,17 +1,8 @@
 /* 
  * SelectTechnician
- * 
- * Displays a dropdown from which to select technicians, or a hidden field 
+ *
+ * Displays a dropdown from which to select technicians, or a hidden field
  * containing a technician ID if requested with a technicianID attribute.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -30,7 +21,7 @@ public class SelectTechnician extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String technicianId = (String) request.getAttribute("technicianId");
@@ -55,7 +46,7 @@ public class SelectTechnician extends HttpServlet {
                     String value = user.getUsername();
                     String display = user.getLName() + ", " + user.getFName();
 
-                    out.println("<option value=\"" + value + "\">" 
+                    out.println("<option value=\"" + value + "\">"
                         + display + " (" + value + ")</option>");
                 }
             }
@@ -68,7 +59,7 @@ public class SelectTechnician extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

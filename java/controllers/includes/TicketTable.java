@@ -1,19 +1,10 @@
 /* 
  * TicketTable
- * 
+ *
  * Displays a table of support tickets.
  * If passed with status parameter, shows only open or completed tickets.
- * If technician attribute passed, shows tickets for that technician only, 
+ * If technician attribute passed, shows tickets for that technician only,
  * otherwise shows tickets for all technicians (admin)
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -35,7 +26,7 @@ public class TicketTable extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -97,20 +88,20 @@ public class TicketTable extends HttpServlet {
                         } else {
                             out.println("<td>");
                             out.println("<a href=\"ViewTickets?completeTicket="
-                                + t.getTicketId() 
+                                + t.getTicketId()
                                 + "\" class=\"btn btn-success btn-sm\">Complete</a>");
                             out.println("&nbsp;");
                             out.println("<a href=\"ViewTickets?cancelTicket="
-                                + t.getTicketId() 
+                                + t.getTicketId()
                                 + "\" class=\"btn btn-danger btn-sm\">Cancel</a>");
                             out.println("</td>");
-                        } 
+                        }
                         out.println("</tr>");
                     }
                 }
 
                 out.println("</tbody>");
-            } 
+            }
 
             if (status.equals("closed")) {
                 // Display only closed orders
@@ -134,7 +125,7 @@ public class TicketTable extends HttpServlet {
                 }
 
                 out.println("</tbody>");
-            }              
+            }
         } else {
             // Display orders of all status types
             for (Entry<String, Ticket> entry : tickets.entrySet()) {
@@ -151,25 +142,25 @@ public class TicketTable extends HttpServlet {
                 out.println("<td>" + t.dateString() + "</td>");
                 out.println("<td>" + t.getMessage() + "</td>");
 
-                // change last td based on completion status    
+                // change last td based on completion status
                 if (t.isOpen()) {
                     if (role.equals("Account Specialist")) {
                         out.println("<td><strong>Open</strong></td>");
                     } else {
                         out.println("<td>");
                         out.println("<a href=\"ViewTickets?completeTicket="
-                            + t.getTicketId() 
+                            + t.getTicketId()
                             + "\" class=\"btn btn-success btn-sm\">Complete</a>");
                         out.println("&nbsp;");
                         out.println("<a href=\"ViewTickets?cancelTicket="
-                            + t.getTicketId() 
+                            + t.getTicketId()
                             + "\" class=\"btn btn-danger btn-sm\">Cancel</a>");
                         out.println("</td>");
                     }
-                } else { 
+                } else {
                     out.println("<td>Completed</td>");
                 }
-                
+
                 out.println("</tr>");
             }
 
@@ -181,7 +172,7 @@ public class TicketTable extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

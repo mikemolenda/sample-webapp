@@ -1,16 +1,7 @@
 /* 
  * SelectItem
- * 
+ *
  * Displays a dropdown from which to select items, limited by user.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -31,7 +22,7 @@ public class SelectItem extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -73,42 +64,42 @@ public class SelectItem extends HttpServlet {
         out.println("<select name=\"itemId\" class=\"form-control\">");
 
         out.println("<optgroup label=\"PPV Movies\"" + flagPPVM + ">");
-        for (Entry<String, Item> entry : 
+        for (Entry<String, Item> entry :
                 EntityData.getItemsByCategory("PPV Movie").entrySet()) {
 
             Item item = entry.getValue();
-            
+
             out.println("<option value=\"" + item.getItemId() + "\">"
                 + item.getName() + " $" + item.getPrice() + "</option>");
         }
 
         out.println("<optgroup label=\"PPV Live Events\"" + flagPPVE + ">");
-        for (Entry<String, Item> entry : 
+        for (Entry<String, Item> entry :
                 EntityData.getItemsByCategory("PPV Live Event").entrySet()) {
 
             Item item = entry.getValue();
-            
+
             out.println("<option value=\"" + item.getItemId() + "\">"
-                + item.getName() + " (" + ((PPVLiveEvent)item).dateString() 
+                + item.getName() + " (" + ((PPVLiveEvent)item).dateString()
                 + ") $" + item.getPrice() + "</option>");
         }
 
         out.println("<optgroup label=\"TV Plans\"" + flagTV + ">");
-        for (Entry<String, Item> entry : 
+        for (Entry<String, Item> entry :
                 EntityData.getItemsByCategory("TV Plan").entrySet()) {
 
             Item item = entry.getValue();
-            
+
             out.println("<option value=\"" + item.getItemId() + "\">"
                 + item.getName() + " $" + item.getPrice() + "</option>");
         }
 
         out.println("<optgroup label=\"Internet Plans\"" + flagInet + ">");
-        for (Entry<String, Item> entry : 
+        for (Entry<String, Item> entry :
                 EntityData.getItemsByCategory("Internet Plan").entrySet()) {
 
             Item item = entry.getValue();
-            
+
             out.println("<option value=\"" + item.getItemId() + "\">"
                 + item.getName() + " $" + item.getPrice() + "</option>");
         }
@@ -121,7 +112,7 @@ public class SelectItem extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

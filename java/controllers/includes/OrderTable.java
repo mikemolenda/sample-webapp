@@ -1,18 +1,9 @@
 /* 
  * OrderTable
- * 
+ *
  * Displays a table of active orders.
  * Manager can update or cancel any one.
  * Account Specialist view only.
- * 
-
-
- 
- *
- 
- *
- 
- 
  */
 
 package controllers.includes;
@@ -33,12 +24,12 @@ public class OrderTable extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
 
-        Map<String, Order> orders = EntityData.getOrders();        
+        Map<String, Order> orders = EntityData.getOrders();
         String role = null;
         String message = (String) request.getAttribute("message");
         String messageStyle = (String) request.getAttribute("messageStyle");
@@ -51,7 +42,7 @@ public class OrderTable extends HttpServlet {
         }
 
         // Enable buttons for certain user types
-        String flagModify = "disabled"; 
+        String flagModify = "disabled";
         String flagRemove = "disabled";
 
         // Manager can modify/delete orders
@@ -82,9 +73,9 @@ public class OrderTable extends HttpServlet {
 
                 String orderId = order.getOrderId();
                 String itemName = order.getItem().getName();
-                String customer = order.getCustomer().getLName() + ", " 
+                String customer = order.getCustomer().getLName() + ", "
                                 + order.getCustomer().getFName();
-                String orderDate = order.dateString();              
+                String orderDate = order.dateString();
 
                 out.println("<tr>");
                 out.println("<td>" + orderId + "</td>");
@@ -93,11 +84,11 @@ public class OrderTable extends HttpServlet {
                 out.println("<td>" + orderDate + "</td>");
                 out.println("<td>");
                 out.println("<a href=\"ModifyOrder?orderId=" + orderId + "\" "
-                    + "class=\"btn btn-info btn-sm " + flagModify + "\">" 
+                    + "class=\"btn btn-info btn-sm " + flagModify + "\">"
                     + "Modify</a>");
                 out.println("&nbsp;");
-                out.println("<a href=\"ViewOrders?removeOrder=" + orderId 
-                    + "\" class=\"btn btn-danger btn-sm " + flagRemove + "\">" 
+                out.println("<a href=\"ViewOrders?removeOrder=" + orderId
+                    + "\" class=\"btn btn-danger btn-sm " + flagRemove + "\">"
                     + "Remove</a>");
                 out.println("</tr>");
             }
@@ -111,7 +102,7 @@ public class OrderTable extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
