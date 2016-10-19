@@ -1,16 +1,7 @@
 /* 
  * TVPlans
- * 
+ *
  * Controls the TV Plans page displayed to the user.
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -29,7 +20,7 @@ public class ItemList extends HttpServlet {
     /**
      * Handle GET requests (e.g. from URL)
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -50,7 +41,7 @@ public class ItemList extends HttpServlet {
         } else {
             url = "/Home";
         }
-    
+
         // Set request parameters based on category
         if (category != null) {
             imgSplash = category.toLowerCase().replace(' ', '-');
@@ -66,7 +57,7 @@ public class ItemList extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

@@ -1,17 +1,8 @@
 /* 
  * PayBill
- * 
+ *
  * "Pays" the user's outstanding invoice:
  * Clears the invoice and displays a confirmation message.
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -32,7 +23,7 @@ public class PayBill extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -78,7 +69,7 @@ public class PayBill extends HttpServlet {
         } else {
             url = "/payment-failure.jsp";
         }
-        
+
         // Redirect to appropriate URL
         request.getRequestDispatcher(url).forward(request, response);
     }

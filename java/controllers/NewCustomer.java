@@ -3,15 +3,6 @@
  * GET: Displays add customer form
  * POST: Adds customer to HashMap, displays confirmation
  * Only available to admins and managers.
- *
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -32,7 +23,7 @@ public class NewCustomer extends HttpServlet {
      * Handle GET requests
      * User arrives via link
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -59,9 +50,9 @@ public class NewCustomer extends HttpServlet {
      * Handle POST requests
      * User submits info change
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+
         HttpSession session = request.getSession();
 
         String role = null;
@@ -81,14 +72,14 @@ public class NewCustomer extends HttpServlet {
         String password = request.getParameter("password");
         String fName = request.getParameter("fName");
         String lName = request.getParameter("lName");
-        String ccNo = request.getParameter("ccNo");        
+        String ccNo = request.getParameter("ccNo");
 
         // If manager or admin, add customer and display customer list
         if (role.equals("Manager") || role.equals("Account Specialist")) {
             url = "ViewCustomers";
-            message = EntityData.addCustomer(username, email, password, fName, 
+            message = EntityData.addCustomer(username, email, password, fName,
                     lName, ccNo);
-            messageStyle = 
+            messageStyle =
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
         }
 

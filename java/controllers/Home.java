@@ -1,16 +1,7 @@
 /* 
  * Home
- * 
+ *
  * Controls the home page displayed to the user, based on their role
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -36,7 +27,7 @@ public class Home extends HttpServlet {
     /**
      * Handle GET requests (e.g. from URL)
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -72,7 +63,7 @@ public class Home extends HttpServlet {
     /**
      * Handle POST requests (e.g. from Login)
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

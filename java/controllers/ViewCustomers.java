@@ -1,17 +1,8 @@
 /* 
  * ViewCustomers
- * 
- * Displays all active customers. 
+ *
+ * Displays all active customers.
  * Removes customer if removeCustomer attribute passed.
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -31,7 +22,7 @@ public class ViewCustomers extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -58,7 +49,7 @@ public class ViewCustomers extends HttpServlet {
             // If passed with removeCustomer, remove that customer
             if (removeCustomer != null) {
                 message = EntityData.removeCustomer(removeCustomer);
-                messageStyle = 
+                messageStyle =
                         message.matches(".*[Ss]uccess.*") ? "success" : "danger";
             }
         }
@@ -74,7 +65,7 @@ public class ViewCustomers extends HttpServlet {
      * Handle POST requests
      * User submits info change
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

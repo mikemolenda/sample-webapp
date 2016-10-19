@@ -1,19 +1,10 @@
 /* 
  * ViewInvoice
- * 
- * Displays user's bill. If passed with an itemId, adds item. 
+ *
+ * Displays user's bill. If passed with an itemId, adds item.
  * If passed with removeOrder, deletes order.
- * Can be accessed by a Customer whose username matches the invoice, or by any 
+ * Can be accessed by a Customer whose username matches the invoice, or by any
  * Account Specialist or Manager.
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -33,7 +24,7 @@ public class ViewInvoice extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -67,12 +58,12 @@ public class ViewInvoice extends HttpServlet {
         if (role.equals("Manager") || role.equals("Account Specialist")) {
             // If customerId specified, get customer from Hashmap
             if (customerId != null) {
-                User targetUser = EntityData.getUsers().get(customerId);            
-                
+                User targetUser = EntityData.getUsers().get(customerId);
+
                 // Ensure customer is actually a customer
-                if (targetUser != null 
+                if (targetUser != null
                         && targetUser.getRole().equals("Customer")) {
-                    customer = (Customer) targetUser; 
+                    customer = (Customer) targetUser;
                 }
             }
         }
@@ -89,7 +80,7 @@ public class ViewInvoice extends HttpServlet {
                     // Add order and get status message
                     message = EntityData.addOrder(new Order(item, customer));
 
-                    messageStyle = 
+                    messageStyle =
                         message.matches(".*[Ss]uccess.*") ? "success" : "danger";
                 }
             }
@@ -97,12 +88,12 @@ public class ViewInvoice extends HttpServlet {
             // If removeOrder passed, remove order
             if (removeOrder != null) {
                 message = EntityData.removeOrder(removeOrder);
-                messageStyle = 
+                messageStyle =
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
             }
 
             // Set attributes for view
-            String customerName = 
+            String customerName =
                 customer.getFName() + " " + customer.getLName();
                 request.setAttribute("message", message);
                 request.setAttribute("messageStyle", messageStyle);
@@ -121,7 +112,7 @@ public class ViewInvoice extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }

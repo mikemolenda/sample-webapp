@@ -2,15 +2,6 @@
  * AddTicket
  * GET: Displays add ticket form
  * POST: Adds ticket based on request info, redirects to ViewTickets
- *
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -31,7 +22,7 @@ public class AddTicket extends HttpServlet {
      * Handle GET requests
      * User arrives via link
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -71,9 +62,9 @@ public class AddTicket extends HttpServlet {
      * Handle POST requests
      * User submits info change
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+
         HttpSession session = request.getSession();
 
         String ticketMsg = request.getParameter("ticketMsg").trim();
@@ -94,14 +85,14 @@ public class AddTicket extends HttpServlet {
 
         // Add ticket
         Customer customer = (Customer) EntityData.getUsers().get(customerId);
-        Technician technician = 
+        Technician technician =
             (Technician) EntityData.getUsers().get(technicianId);
 
         message = EntityData.addTicket(
             new Ticket(ticketMsg, customer, technician, true));
 
         messageStyle = message.matches(".*[Ss]uccess.*") ? "success" : "danger";
-       
+
         // Set message and redirect to appropriate URL
         request.setAttribute("message", message);
         request.setAttribute("messageStyle", messageStyle);

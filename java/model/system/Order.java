@@ -1,27 +1,18 @@
 /* 
  * Order
- * 
- * Represents an order that can be placed by a Customer, and manipulated by an 
+ *
+ * Represents an order that can be placed by a Customer, and manipulated by an
  * Account Specialist or Manager
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
-package model.system; 
+package model.system;
 
 import java.text.*;
 import java.util.*;
 
 import model.*;
 import model.items.*;
-import model.roles.*; 
+import model.roles.*;
 
 public class Order implements java.io.Serializable {
 
@@ -33,14 +24,14 @@ public class Order implements java.io.Serializable {
     public Order() {
         // Always generate a unique ID for the order
         // Borrowed from http://stackoverflow.com/a/4009586
-        this.ORDER_ID = UUID.randomUUID().toString(); 
+        this.ORDER_ID = UUID.randomUUID().toString();
         setItem(null);
         setOrderDate(null);
         setCustomer(null);
     }
 
     public Order(Item item, Date orderDate, Customer customer) {
-        this.ORDER_ID = UUID.randomUUID().toString(); 
+        this.ORDER_ID = UUID.randomUUID().toString();
         setItem(item);
         setCustomer(customer);
         setOrderDate(orderDate);
@@ -48,7 +39,7 @@ public class Order implements java.io.Serializable {
 
     // Set orderDate to today if no date provided to constructor
     public Order(Item item, Customer customer) {
-        this.ORDER_ID = UUID.randomUUID().toString(); 
+        this.ORDER_ID = UUID.randomUUID().toString();
         setItem(item);
         setCustomer(customer);
         Calendar cal = Calendar.getInstance();
@@ -88,6 +79,6 @@ public class Order implements java.io.Serializable {
      */
     public String dateString() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        return sdf.format(getOrderDate()); 
+        return sdf.format(getOrderDate());
     }
 }

@@ -1,17 +1,8 @@
 /* 
  * Login
- * 
- * Controls user login. Assigns a role to the session user based on login type, 
+ *
+ * Controls user login. Assigns a role to the session user based on login type,
  * then redirects Home.
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -26,7 +17,7 @@ import model.roles.*;
 
 public class Login extends HttpServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -48,7 +39,7 @@ public class Login extends HttpServlet {
                         // Set session user
                         session.setAttribute("user", user);
                         session.setAttribute("username", user.getUsername());
-                        session.setAttribute("fullname", 
+                        session.setAttribute("fullname",
                             (user.getFName() + " " + user.getLName()));
                         session.setAttribute("role", user.getRole());
                     }
@@ -65,7 +56,7 @@ public class Login extends HttpServlet {
             request.setAttribute("message", "Invalid username");
         }
 
-        // Redirect Home        
+        // Redirect Home
         request.getRequestDispatcher("/Home").forward(request, response);
     }
 }

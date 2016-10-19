@@ -4,15 +4,6 @@
  * POST: Adds order to HashMap, displays confirmation
  * Only available to admins and managers.
  * Admins can only add PPVs
- *
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -33,7 +24,7 @@ public class AddOrder extends HttpServlet {
      * Handle GET requests
      * User arrives via link
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -59,9 +50,9 @@ public class AddOrder extends HttpServlet {
      * Handle POST requests
      * User submits info change
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+
         HttpSession session = request.getSession();
 
         String role = null;
@@ -94,7 +85,7 @@ public class AddOrder extends HttpServlet {
             if (role.equals("Account Specialist")) {
                 if (item.getCategory().matches(".*PPV.*")) {
                     message = EntityData.addOrder(new Order(item, customer));
-                    messageStyle = 
+                    messageStyle =
                         message.matches(".*[Ss]uccess.*") ? "success" : "danger";
                 } else {
                     message = "Not authorized to add " + item.getCategory();
@@ -105,7 +96,7 @@ public class AddOrder extends HttpServlet {
             // Managers can add any item type
             if (role.equals("Manager")) {
                 message = EntityData.addOrder(new Order(item, customer));
-                messageStyle = 
+                messageStyle =
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
             }
         }

@@ -1,18 +1,9 @@
 /* 
  * AutoComplete
- * 
+ *
  * Responds with entity data for search autocompletion.
  *
  * "complete" & "lookup" actions borrowed from CIS419 source code (ajax-my-app)
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -37,7 +28,7 @@ public class AutoComplete extends HttpServlet {
      */
     @Override
     public void doGet(
-            HttpServletRequest request, HttpServletResponse response) 
+            HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");  // action to perform
@@ -73,7 +64,7 @@ public class AutoComplete extends HttpServlet {
                         itemsAdded = true;
                     }
                 }
-            } 
+            }
 
             // If items were added, respond with XML, otherwise SC 204
             if (itemsAdded) {
@@ -90,11 +81,11 @@ public class AutoComplete extends HttpServlet {
         if (action.equals("lookup")) {
 
             if (targetId != null) {
-                
+
                 String key = targetId.trim();
                 String url = "ViewInvoice?itemId=" + key;
 
-                if (items.containsKey(key)) { 
+                if (items.containsKey(key)) {
                     request.getRequestDispatcher(url).forward(request, response);
                 }
             }

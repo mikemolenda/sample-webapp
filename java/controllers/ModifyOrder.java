@@ -3,15 +3,6 @@
  * GET, passed with orderId: Redirects to order modification form.
  * GET, passed without parameter: Redirects to orders list with message.
  * POST: Processes modify request.
- *
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -31,7 +22,7 @@ public class ModifyOrder extends HttpServlet {
     /**
      * Handle GET requests
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -56,16 +47,16 @@ public class ModifyOrder extends HttpServlet {
                 Order order = EntityData.getOrders().get(orderId);
                 Customer customer = order.getCustomer();
                 Item item = order.getItem();
-                
+
                 // Set attributes for order form
                 request.setAttribute("orderId", orderId);
-                request.setAttribute("customerName", customer.getFName() + " " 
+                request.setAttribute("customerName", customer.getFName() + " "
                     + customer.getLName());
                 request.setAttribute("itemName", item.getName());
 
             } else {
                 url = "/ViewOrders";
-                message = "<strong>Attention: </strong>" 
+                message = "<strong>Attention: </strong>"
                         + "Please select an order to modify from the list below.";
                 messageStyle = "warning";
             }
@@ -81,9 +72,9 @@ public class ModifyOrder extends HttpServlet {
     /**
      * Handle POST requests
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
 
         String role = null;
@@ -105,9 +96,9 @@ public class ModifyOrder extends HttpServlet {
         if (role.equals("Manager")) {
             url = "/ViewOrders";
             message = EntityData.modifyOrder(orderId, itemId);
-            messageStyle = 
+            messageStyle =
                     message.matches(".*[Ss]uccess.*") ? "success" : "danger";
-        }        
+        }
 
         // Set message and redirect to appropriate URL
         request.setAttribute("message", message);

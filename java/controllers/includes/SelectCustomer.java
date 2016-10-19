@@ -4,14 +4,14 @@
  * Displays a dropdown from which to select customers, or a hidden field 
  * containing a customer ID if requested with a customerID attribute.
  * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
+
+
+ 
  *
- * March 13, 2016
+ 
  *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
+ 
+ 
  */
 
 package controllers.includes;

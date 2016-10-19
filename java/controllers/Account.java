@@ -1,16 +1,7 @@
-/* 
+/*
  * Account
- * 
+ *
  * Displays appropriate account management page for user
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package controllers;
@@ -31,7 +22,7 @@ public class Account extends HttpServlet {
      * Handle GET requests
      * User arrives via link
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -62,12 +53,12 @@ public class Account extends HttpServlet {
         if (role.equals("Manager") || role.equals("Account Specialist")) {
             // If customerId specified, get customer from Hashmap
             if (customerId != null) {
-                User targetUser = EntityData.getUsers().get(customerId);            
-                
+                User targetUser = EntityData.getUsers().get(customerId);
+
                 // Ensure customer is actually a customer
-                if (targetUser != null 
+                if (targetUser != null
                         && targetUser.getRole().equals("Customer")) {
-                    customer = (Customer) targetUser; 
+                    customer = (Customer) targetUser;
                 }
             }
         }
@@ -80,10 +71,10 @@ public class Account extends HttpServlet {
             request.setAttribute("password", customer.getPassword());
             request.setAttribute("email", customer.getEmail());
             request.setAttribute("fName", customer.getFName());
-            request.setAttribute("lName", customer.getLName());  
-            request.setAttribute("fullName", 
+            request.setAttribute("lName", customer.getLName());
+            request.setAttribute("fullName",
                     customer.getFName() + " " + customer.getLName());
-            request.setAttribute("ccNo", customer.getCreditCardNo());          
+            request.setAttribute("ccNo", customer.getCreditCardNo());
 
         } else {
             url = "/Home";
@@ -97,9 +88,9 @@ public class Account extends HttpServlet {
      * Handle POST requests
      * User submits info change
      */
-    public void doPost(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+
         HttpSession session = request.getSession();
 
         String username = request.getParameter("username");
@@ -107,7 +98,7 @@ public class Account extends HttpServlet {
         String password = request.getParameter("password");
         String fName = request.getParameter("fName");
         String lName = request.getParameter("lName");
-        String ccNo = request.getParameter("ccNo"); 
+        String ccNo = request.getParameter("ccNo");
 
         String message;
         String messageStyle;
@@ -115,7 +106,7 @@ public class Account extends HttpServlet {
         String currentUser;
 
         // Update customer
-        message = EntityData.modifyCustomer(username, email, password, fName, 
+        message = EntityData.modifyCustomer(username, email, password, fName,
             lName, ccNo);
         messageStyle = message.matches(".*[Ss]uccess.*") ? "success" : "danger";
 
@@ -132,7 +123,7 @@ public class Account extends HttpServlet {
 
                 session.setAttribute("user", customer);
                 session.setAttribute("username", customer.getUsername());
-                session.setAttribute("fullname", 
+                session.setAttribute("fullname",
                     (customer.getFName() + " " + customer.getLName()));
                 session.setAttribute("role", customer.getRole());
 
@@ -146,10 +137,10 @@ public class Account extends HttpServlet {
         request.setAttribute("password", customer.getPassword());
         request.setAttribute("email", customer.getEmail());
         request.setAttribute("fName", customer.getFName());
-        request.setAttribute("lName", customer.getLName());  
-        request.setAttribute("fullName", 
+        request.setAttribute("lName", customer.getLName());
+        request.setAttribute("fullName",
                 customer.getFName() + " " + customer.getLName());
-        request.setAttribute("ccNo", customer.getCreditCardNo()); 
+        request.setAttribute("ccNo", customer.getCreditCardNo());
 
         request.getRequestDispatcher(url).forward(request, response);
     }

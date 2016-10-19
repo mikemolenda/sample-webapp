@@ -1,16 +1,7 @@
 /* 
  * Ticket
- * 
+ *
  * Represents a support ticket that can be assigned to a technician
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package model.system;
@@ -18,7 +9,7 @@ package model.system;
 import java.util.*;
 import java.text.*;
 
-import model.*; 
+import model.*;
 import model.roles.*;
 
 public class Ticket implements java.io.Serializable {
@@ -41,7 +32,7 @@ public class Ticket implements java.io.Serializable {
         setScheduleDate(null);
     }
 
-    public Ticket(String message, Customer customer, 
+    public Ticket(String message, Customer customer,
             Technician technician, Date scheduleDate, boolean open) {
         this.TICKET_ID = UUID.randomUUID().toString();
         setMessage(message);
@@ -52,7 +43,7 @@ public class Ticket implements java.io.Serializable {
     }
 
     // Set scheduleDate to today if no date provided to constructor
-    public Ticket(String message, Customer customer, 
+    public Ticket(String message, Customer customer,
             Technician technician, boolean open) {
         this.TICKET_ID = UUID.randomUUID().toString();
         setMessage(message);
@@ -112,6 +103,6 @@ public class Ticket implements java.io.Serializable {
      */
     public String dateString() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        return sdf.format(getScheduleDate()); 
+        return sdf.format(getScheduleDate());
     }
 }

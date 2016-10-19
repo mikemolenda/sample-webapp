@@ -1,22 +1,13 @@
 /* 
  * Item
- * 
+ *
  * Represents a generic item that can be ordered.
- * 
- * Northwestern University
- * CIS 419 Web Application Development, Winter 2016
- * Final Project
- *
- * March 13, 2016
- *
- * Mike Molenda
- * michaelmolenda2014@u.northwestern.edu 
  */
 
 package model.items;
 
 import java.math.*;
-import java.util.*; 
+import java.util.*;
 
 public abstract class Item implements java.io.Serializable {
 
@@ -41,7 +32,7 @@ public abstract class Item implements java.io.Serializable {
 
     public String getItemId() {
         return itemId;
-    }    
+    }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
